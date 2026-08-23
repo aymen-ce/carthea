@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import bottleImg from "../assets/carthea-bottle.jpg";
-import pourImg from "../assets/carthea-pour.jpg";
+import trioStudio from "../assets/carthea-trio-studio.jpg.asset.json";
+import trioVerger from "../assets/carthea-trio-verger.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,8 +40,11 @@ function Index() {
             <a href="#heritage" className="hover:text-gold transition-colors">
               L'Origine
             </a>
+            <a href="#gamme" className="hover:text-gold transition-colors">
+              La Gamme
+            </a>
             <a href="#collection" className="hover:text-gold transition-colors">
-              Collection
+              Millésime
             </a>
             <Link to="/contact" className="hover:text-gold transition-colors">
               Contact
@@ -71,12 +74,12 @@ function Index() {
           </div>
 
           <div className="col-span-12 lg:col-span-7 flex justify-end">
-            <div className="relative w-full max-w-lg aspect-[3/4]">
+            <div className="relative w-full max-w-2xl aspect-[16/9]">
               <img
-                src={bottleImg}
-                alt="CARTHÉA — Bouteille d'huile d'olive vierge extra premium"
-                width={1080}
-                height={1440}
+                src={trioStudio.url}
+                alt="Les trois bouteilles CARTHÉA — Classique, Premium et 100% Bio, huile d'olive vierge extra 250 ml"
+                width={1376}
+                height={768}
                 className="w-full h-full object-cover bg-stone-900 shadow-2xl rounded-lg"
               />
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gold/10 backdrop-blur-3xl rounded-full blur-3xl" />
@@ -91,12 +94,12 @@ function Index() {
           <div className="grid grid-cols-12 gap-12 items-start">
             <div className="col-span-12 lg:col-span-6">
               <img
-                src={pourImg}
-                alt="Huile d'olive CARTHÉA versée dans un bol en céramique"
-                width={1200}
-                height={1600}
+                src={trioVerger.url}
+                alt="Bouteilles CARTHÉA dans un verger d'oliviers tunisien"
+                width={1376}
+                height={768}
                 loading="lazy"
-                className="w-full aspect-[4/5] object-cover bg-stone-900 rounded-lg"
+                className="w-full aspect-[4/5] object-cover object-center bg-stone-900 rounded-lg"
               />
             </div>
             <div className="col-span-12 lg:col-span-5 lg:col-start-8 pt-12 lg:pt-32">
@@ -115,6 +118,60 @@ function Index() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* La Gamme */}
+      <section id="gamme" className="bg-obsidian py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-16">
+            <span className="text-gold text-sm tracking-[0.3em] uppercase block mb-6">
+              La Gamme
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl leading-tight text-balance font-medium">
+              Trois expressions, un même terroir.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-stone-900">
+            {[
+              {
+                name: "Classique",
+                palette: "Noir & Or",
+                desc: "L'équilibre CARTHÉA. Fruité mûr, douceur ronde, parfaite pour la cuisine du quotidien.",
+                labels: "Kosher · Halal · Produit de Tunisie",
+                swatch: "bg-obsidian ring-gold/60",
+              },
+              {
+                name: "Premium",
+                palette: "Vert & Or",
+                desc: "Première pression à froid sélectionnée. Fruité vert intense, amertume noble, finale poivrée.",
+                labels: "Kosher · Halal · Produit de Tunisie",
+                swatch: "bg-[oklch(0.28_0.06_140)] ring-gold/60",
+              },
+              {
+                name: "100% Bio",
+                palette: "Blanc & Vert",
+                desc: "Issue de l'agriculture biologique certifiée Ecocert. Pureté végétale, notes d'herbe fraîche.",
+                labels: "Certifié Ecocert TN-BIO-001 · Produit de Tunisie",
+                swatch: "bg-sand ring-sand/40",
+              },
+            ].map((v) => (
+              <article key={v.name} className="bg-obsidian p-10 flex flex-col gap-5">
+                <span className={`h-10 w-10 rounded-full ring-1 ${v.swatch}`} />
+                <div>
+                  <h3 className="font-serif text-3xl text-sand">{v.name}</h3>
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-gold/80">
+                    {v.palette} · 250 ml
+                  </span>
+                </div>
+                <p className="text-sm text-sand/60 text-pretty max-w-[40ch]">{v.desc}</p>
+                <span className="text-[10px] uppercase tracking-[0.15em] text-sand/35 mt-auto pt-4 border-t border-stone-900">
+                  {v.labels}
+                </span>
+              </article>
+            ))}
           </div>
         </div>
       </section>
