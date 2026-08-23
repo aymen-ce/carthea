@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import trioStudio from "../assets/carthea-trio-studio.jpg.asset.json";
 import trioVerger from "../assets/carthea-trio-verger.jpg.asset.json";
+import { FormatExplorer } from "../components/FormatExplorer";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -198,68 +200,8 @@ function Index() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-stone-900">
-            {[
-              {
-                name: "Bouteille Dorica",
-                material: "Verre",
-                capacities: ["250 ml", "500 ml", "750 ml"],
-                desc: "La silhouette ronde et généreuse, typique des huiles d'olive de la Méditerranée. Solide et présente bien sur la table et en linéaire.",
-                use: "Grande distribution · Caviste · Cadeau",
-              },
-              {
-                name: "Bouteille Marasca",
-                material: "Verre",
-                capacities: ["250 ml", "500 ml", "750 ml", "1 L"],
-                desc: "Ligne élancée et élégante, reconnue pour son style italien raffiné. Idéale pour les coffrets premium et les épiceries fines.",
-                use: "Coffret · Épicerie fine · Premium",
-              },
-              {
-                name: "Bouteille Biolio",
-                material: "Verre",
-                capacities: ["100 ml", "250 ml", "500 ml", "750 ml", "1 L"],
-                desc: "Forme moderne et distincte, parfaitement adaptée aux gammes bio et aux coffrets découverte. Le format 100 ml est idéal pour les échantillons et les paniers gourmands.",
-                use: "Bio · Découverte · Échantillon · Cadeau",
-              },
-              {
-                name: "Bidon Métallique",
-                material: "Métal",
-                capacities: ["2 L", "3 L", "4 L", "5 L"],
-                desc: "Protection optimale contre la lumière et l'oxygène. Format robuste pour une consommation quotidienne en cuisine ou en restauration.",
-                use: "Restauration · Cuisine familiale · Professionnel",
-              },
-              {
-                name: "Bouteille PET",
-                material: "PET alimentaire",
-                capacities: ["3 L", "5 L"],
-                desc: "Légèreté et résistance pour un usage pratique et une logistique simplifiée. Parfait pour les volumes et la grande consommation.",
-                use: "Grande consommation · Restauration · Export",
-              },
-            ].map((f) => (
-              <article key={f.name} className="bg-stone-950 p-10 flex flex-col gap-6">
-                <div>
-                  <h3 className="font-serif text-3xl text-sand mb-2">{f.name}</h3>
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-gold/80">
-                    {f.material}
-                  </span>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {f.capacities.map((c) => (
-                    <span
-                      key={c}
-                      className="px-3 py-1.5 text-xs uppercase tracking-wider text-sand border border-stone-800 bg-stone-900/50"
-                    >
-                      {c}
-                    </span>
-                  ))}
-                </div>
-                <p className="text-sm text-sand/60 text-pretty max-w-[40ch]">{f.desc}</p>
-                <span className="text-[10px] uppercase tracking-[0.15em] text-sand/35 mt-auto pt-4 border-t border-stone-900">
-                  {f.use}
-                </span>
-              </article>
-            ))}
-          </div>
+          <FormatExplorer />
+
         </div>
       </section>
 
