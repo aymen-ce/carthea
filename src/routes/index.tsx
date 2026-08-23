@@ -119,6 +119,60 @@ function Index() {
         </div>
       </section>
 
+      {/* La Gamme */}
+      <section id="gamme" className="bg-obsidian py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl mb-16">
+            <span className="text-gold text-sm tracking-[0.3em] uppercase block mb-6">
+              La Gamme
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl leading-tight text-balance font-medium">
+              Trois expressions, un même terroir.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-stone-900">
+            {[
+              {
+                name: "Classique",
+                palette: "Noir & Or",
+                desc: "L'équilibre CARTHÉA. Fruité mûr, douceur ronde, parfaite pour la cuisine du quotidien.",
+                labels: "Kosher · Halal · Produit de Tunisie",
+                swatch: "bg-obsidian ring-gold/60",
+              },
+              {
+                name: "Premium",
+                palette: "Vert & Or",
+                desc: "Première pression à froid sélectionnée. Fruité vert intense, amertume noble, finale poivrée.",
+                labels: "Kosher · Halal · Produit de Tunisie",
+                swatch: "bg-[oklch(0.28_0.06_140)] ring-gold/60",
+              },
+              {
+                name: "100% Bio",
+                palette: "Blanc & Vert",
+                desc: "Issue de l'agriculture biologique certifiée Ecocert. Pureté végétale, notes d'herbe fraîche.",
+                labels: "Certifié Ecocert TN-BIO-001 · Produit de Tunisie",
+                swatch: "bg-sand ring-sand/40",
+              },
+            ].map((v) => (
+              <article key={v.name} className="bg-obsidian p-10 flex flex-col gap-5">
+                <span className={`h-10 w-10 rounded-full ring-1 ${v.swatch}`} />
+                <div>
+                  <h3 className="font-serif text-3xl text-sand">{v.name}</h3>
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-gold/80">
+                    {v.palette} · 250 ml
+                  </span>
+                </div>
+                <p className="text-sm text-sand/60 text-pretty max-w-[40ch]">{v.desc}</p>
+                <span className="text-[10px] uppercase tracking-[0.15em] text-sand/35 mt-auto pt-4 border-t border-stone-900">
+                  {v.labels}
+                </span>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Characteristics Grid */}
       <section id="collection" className="bg-obsidian py-32 px-6 border-y border-stone-900">
         <div className="max-w-7xl mx-auto">
