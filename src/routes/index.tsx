@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import bottleImg from "../assets/carthea-bottle.jpg";
 import pourImg from "../assets/carthea-pour.jpg";
 
@@ -43,9 +43,9 @@ function Index() {
             <a href="#collection" className="hover:text-gold transition-colors">
               Collection
             </a>
-            <a href="#contact" className="hover:text-gold transition-colors">
+            <Link to="/contact" className="hover:text-gold transition-colors">
               Contact
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
