@@ -198,19 +198,33 @@ function Index() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-stone-900">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-stone-900">
             {[
               {
                 name: "Bouteille Dorica",
                 material: "Verre",
                 capacities: ["250 ml", "500 ml", "750 ml"],
-                desc: "La silhouette classique et élégante de la table méditerranéenne. Idéale pour la grande distribution, les cavistes et les coffrets cadeaux.",
+                desc: "La silhouette ronde et généreuse, typique des huiles d'olive de la Méditerranée. Solide et présente bien sur la table et en linéaire.",
                 use: "Grande distribution · Caviste · Cadeau",
+              },
+              {
+                name: "Bouteille Marasca",
+                material: "Verre",
+                capacities: ["250 ml", "500 ml", "750 ml", "1 L"],
+                desc: "Ligne élancée et élégante, reconnue pour son style italien raffiné. Idéale pour les coffrets premium et les épiceries fines.",
+                use: "Coffret · Épicerie fine · Premium",
+              },
+              {
+                name: "Bouteille Biolio",
+                material: "Verre",
+                capacities: ["100 ml", "250 ml", "500 ml", "750 ml", "1 L"],
+                desc: "Forme moderne et distincte, parfaitement adaptée aux gammes bio et aux coffrets découverte. Le format 100 ml est idéal pour les échantillons et les paniers gourmands.",
+                use: "Bio · Découverte · Échantillon · Cadeau",
               },
               {
                 name: "Bidon Métallique",
                 material: "Métal",
-                capacities: ["3 L", "4 L", "5 L"],
+                capacities: ["2 L", "3 L", "4 L", "5 L"],
                 desc: "Protection optimale contre la lumière et l'oxygène. Format robuste pour une consommation quotidienne en cuisine ou en restauration.",
                 use: "Restauration · Cuisine familiale · Professionnel",
               },
