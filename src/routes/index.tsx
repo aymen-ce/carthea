@@ -71,12 +71,12 @@ function Index() {
           </div>
 
           <div className="col-span-12 lg:col-span-7 flex justify-end">
-            <div className="relative w-full max-w-lg aspect-[3/4]">
+            <div className="relative w-full max-w-2xl aspect-[16/9]">
               <img
-                src={bottleImg}
-                alt="CARTHÉA — Bouteille d'huile d'olive vierge extra premium"
-                width={1080}
-                height={1440}
+                src={trioStudio.url}
+                alt="Les trois bouteilles CARTHÉA — Classique, Premium et 100% Bio, huile d'olive vierge extra 250 ml"
+                width={1376}
+                height={768}
                 className="w-full h-full object-cover bg-stone-900 shadow-2xl rounded-lg"
               />
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gold/10 backdrop-blur-3xl rounded-full blur-3xl" />
@@ -91,12 +91,12 @@ function Index() {
           <div className="grid grid-cols-12 gap-12 items-start">
             <div className="col-span-12 lg:col-span-6">
               <img
-                src={pourImg}
-                alt="Huile d'olive CARTHÉA versée dans un bol en céramique"
-                width={1200}
-                height={1600}
+                src={trioVerger.url}
+                alt="Bouteilles CARTHÉA dans un verger d'oliviers tunisien"
+                width={1376}
+                height={768}
                 loading="lazy"
-                className="w-full aspect-[4/5] object-cover bg-stone-900 rounded-lg"
+                className="w-full aspect-[4/5] object-cover object-center bg-stone-900 rounded-lg"
               />
             </div>
             <div className="col-span-12 lg:col-span-5 lg:col-start-8 pt-12 lg:pt-32">
