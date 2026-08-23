@@ -43,6 +43,9 @@ function Index() {
             <a href="#gamme" className="hover:text-gold transition-colors">
               La Gamme
             </a>
+            <a href="#formats" className="hover:text-gold transition-colors">
+              Les Formats
+            </a>
             <a href="#collection" className="hover:text-gold transition-colors">
               Millésime
             </a>
@@ -163,12 +166,82 @@ function Index() {
                 <div>
                   <h3 className="font-serif text-3xl text-sand">{v.name}</h3>
                   <span className="text-[10px] uppercase tracking-[0.2em] text-gold/80">
-                    {v.palette} · 250 ml
+                    {v.palette} · plusieurs formats
                   </span>
                 </div>
                 <p className="text-sm text-sand/60 text-pretty max-w-[40ch]">{v.desc}</p>
                 <span className="text-[10px] uppercase tracking-[0.15em] text-sand/35 mt-auto pt-4 border-t border-stone-900">
                   {v.labels}
+                </span>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Les Formats */}
+      <section id="formats" className="bg-stone-950 py-32 px-6 border-y border-stone-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-12 gap-12 items-start mb-20">
+            <div className="col-span-12 lg:col-span-5">
+              <span className="text-gold text-sm tracking-[0.3em] uppercase block mb-6">
+                Les Formats
+              </span>
+              <h2 className="font-serif text-3xl md:text-5xl leading-tight text-balance font-medium">
+                Du format d'apéritif au volume professionnel.
+              </h2>
+            </div>
+            <div className="col-span-12 lg:col-span-5 lg:col-start-8">
+              <p className="text-sand/60 leading-relaxed text-pretty">
+                Chaque expression de la gamme CARTHÉA est proposée dans une gamme complète de conditionnements, pensée pour la table, la cuisine familiale et les besoins de la restauration et de l'industrie agroalimentaire.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-stone-900">
+            {[
+              {
+                name: "Bouteille Dorica",
+                material: "Verre",
+                capacities: ["250 ml", "500 ml", "750 ml"],
+                desc: "La silhouette classique et élégante de la table méditerranéenne. Idéale pour la grande distribution, les cavistes et les coffrets cadeaux.",
+                use: "Grande distribution · Caviste · Cadeau",
+              },
+              {
+                name: "Bidon Métallique",
+                material: "Métal",
+                capacities: ["3 L", "4 L", "5 L"],
+                desc: "Protection optimale contre la lumière et l'oxygène. Format robuste pour une consommation quotidienne en cuisine ou en restauration.",
+                use: "Restauration · Cuisine familiale · Professionnel",
+              },
+              {
+                name: "Bouteille PET",
+                material: "PET alimentaire",
+                capacities: ["3 L", "5 L"],
+                desc: "Légèreté et résistance pour un usage pratique et une logistique simplifiée. Parfait pour les volumes et la grande consommation.",
+                use: "Grande consommation · Restauration · Export",
+              },
+            ].map((f) => (
+              <article key={f.name} className="bg-stone-950 p-10 flex flex-col gap-6">
+                <div>
+                  <h3 className="font-serif text-3xl text-sand mb-2">{f.name}</h3>
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-gold/80">
+                    {f.material}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {f.capacities.map((c) => (
+                    <span
+                      key={c}
+                      className="px-3 py-1.5 text-xs uppercase tracking-wider text-sand border border-stone-800 bg-stone-900/50"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-sm text-sand/60 text-pretty max-w-[40ch]">{f.desc}</p>
+                <span className="text-[10px] uppercase tracking-[0.15em] text-sand/35 mt-auto pt-4 border-t border-stone-900">
+                  {f.use}
                 </span>
               </article>
             ))}
