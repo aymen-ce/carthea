@@ -40,8 +40,11 @@ function Index() {
             <a href="#heritage" className="hover:text-gold transition-colors">
               L'Origine
             </a>
+            <a href="#gamme" className="hover:text-gold transition-colors">
+              La Gamme
+            </a>
             <a href="#collection" className="hover:text-gold transition-colors">
-              Collection
+              Millésime
             </a>
             <Link to="/contact" className="hover:text-gold transition-colors">
               Contact
