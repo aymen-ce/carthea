@@ -43,6 +43,9 @@ function Index() {
             <a href="#gamme" className="hover:text-gold transition-colors">
               La Gamme
             </a>
+            <a href="#formats" className="hover:text-gold transition-colors">
+              Les Formats
+            </a>
             <a href="#collection" className="hover:text-gold transition-colors">
               Millésime
             </a>
