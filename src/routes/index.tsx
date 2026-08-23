@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import trioStudio from "../assets/carthea-trio-studio.jpg.asset.json";
 import trioVerger from "../assets/carthea-trio-verger.jpg.asset.json";
+import { FormatExplorer } from "../components/FormatExplorer";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
