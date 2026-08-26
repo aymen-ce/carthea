@@ -133,27 +133,27 @@ const FORMATS: Format[] = [
   },
 ];
 
-/** Hauteur maximale toutes gammes confondues, pour une mise à l'échelle réelle */
+/** Dimensions maximales toutes gammes confondues, pour une échelle physique commune. */
 const MAX_HEIGHT = Math.max(
   ...FORMATS.flatMap((f) => f.capacities.map((c) => c.height)),
 );
-const MIN_SCALE = 0.42;
-
-function scaleFor(height: number) {
-  return MIN_SCALE + (height / MAX_HEIGHT) * (1 - MIN_SCALE);
-}
+const DISPLAY_HEIGHT = 352;
+const MM_TO_PX = DISPLAY_HEIGHT / MAX_HEIGHT;
 
 function fmt(n: number) {
   return String(n).replace(".", ",");
 }
 
 export function FormatExplorer() {
-  const [formatId, setFormatId] = useState(FORMATS[0]!.id);
+  const initialFormat = FORMATS[0];
+  const [formatId, setFormatId] = useState(initialFormat?.id ?? "dorica");
   const [variant, setVariant] = useState<VariantId>("classique");
   const [capIndex, setCapIndex] = useState(0);
 
-  const format = FORMATS.find((f) => f.id === formatId)!;
-  const capacity = format.capacities[Math.min(capIndex, format.capacities.length - 1)]!;
+  const format = FORMATS.find((f) => f.id === formatId) ?? initialFormat;
+  if (!format) return null;
+  const capacity = format.capacities[Math.min(capIndex, format.capacities.length - 1)] ?? format.capacities[0];
+  if (!capacity) return null;
 
   return (
     <div className="flex flex-col gap-10">
@@ -246,9 +246,10 @@ export function FormatExplorer() {
                 width={768}
                 height={1024}
                 style={{
-                  transform: `scale(${f.id === format.id ? scaleFor(capacity.height) : 0.5})`,
+                  width: `${capacity.width * MM_TO_PX}px`,
+                  height: `${capacity.height * MM_TO_PX}px`,
                 }}
-                className={`absolute bottom-14 max-h-[88%] w-auto object-contain origin-bottom transition-all duration-700 ease-out drop-shadow-[0_25px_45px_rgba(0,0,0,0.6)] ${
+                className={`absolute bottom-16 object-fill origin-bottom transition-[width,height,opacity,filter] duration-700 ease-out drop-shadow-[0_25px_45px_rgba(0,0,0,0.6)] ${
                   f.id === format.id ? "opacity-100 blur-0" : "opacity-0 blur-sm pointer-events-none"
                 }`}
               />
@@ -259,7 +260,7 @@ export function FormatExplorer() {
               {capacity.label}
             </span>
             <span className="text-[10px] uppercase tracking-[0.2em] text-sand/40">
-              H {fmt(capacity.height)} mm · Ø {fmt(capacity.width)} mm
+              H {fmt(capacity.height)} mm · corps {fmt(capacity.width)} mm · échelle commune
             </span>
           </div>
         </div>
