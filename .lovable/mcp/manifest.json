@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "sdk_version": "0.28.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "build-your-site",
+      "version": "0.1.0",
+      "title": "Build Your Site"
+    },
+    "tools": [
+      {
+        "name": "list_packaging_formats",
+        "title": "List packaging formats",
+        "description": "List every CARTHÉA packaging format (Dorica, Marasca, Biolio, metal tin, PET) with its material, use cases and available capacities.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_format_specs",
+        "title": "Get packaging specs",
+        "description": "Get the full technical sheet of one CARTHÉA packaging format: every capacity with real height, body width, empty weight, brimful volume and neck finish (in mm / g / ml).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "format_id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Packaging id: dorica, marasca, biolio, bidon or pet."
+            }
+          },
+          "required": [
+            "format_id"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_label_variants",
+        "title": "List label variants",
+        "description": "List the three CARTHÉA label variants (Classique, Premium, 100% Bio) with their colour palette and certifications.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_brand_info",
+        "title": "Get brand info",
+        "description": "Get public information about the CARTHÉA brand: producer, origin of the groves, positioning and website.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
