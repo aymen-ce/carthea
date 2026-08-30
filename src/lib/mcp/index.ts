@@ -11,5 +11,7 @@ export default defineMcp({
   version: "0.1.0",
   instructions:
     "Public catalogue tools for CARTHÉA, a Tunisian extra virgin olive oil brand. Use `list_packaging_formats` to browse packaging, `get_format_specs` for real technical dimensions of one packaging, `list_label_variants` for the three label designs, and `get_brand_info` for brand and origin details.",
-  tools: [listFormatsTool, getFormatSpecsTool, listLabelVariantsTool, getBrandInfoTool],
+  tools: [listFormatsTool, getFormatSpecsTool, listLabelVariantsTool, getBrandInfoTool] as Parameters<
+    typeof defineMcp
+  >[0]["tools"],
 });
