@@ -1,0 +1,84 @@
+# CARTHÉA — Refonte éditoriale premium
+
+Objectif : passer d'un bon prototype à un site de marque haut de gamme, sans toucher aux données produit, aux visuels d'emballage, ni à l'architecture des routes.
+
+## Ce qui ne change pas
+
+- Les 15 visuels d'emballage et les 2 photos (studio, verger) restent exactement tels quels.
+- Toutes les cotes techniques, contenances, bagues, poids et sources restent identiques.
+- Routes `/`, `/contact`, `/mcp`, serveur MCP et fichiers générés : inchangés.
+- Palette obsidian / or / sable / vert olive, serif Cormorant + sans Instrument.
+
+## 1. Fondations design
+
+- Ajouter dans `src/styles.css` une échelle typographique éditoriale (tailles fluides via `clamp`), des tokens de rythme vertical de section, un token vert olive déjà présent dans la gamme, et des états focus visibles en or.
+- Ajouter des utilitaires d'animation discrets (fade-up au scroll, transition d'image) désactivés sous `prefers-reduced-motion`.
+- Créer des petits composants réutilisables : `SectionLabel` (micro-label capitales espacées), `Reveal` (apparition au scroll via IntersectionObserver, sans librairie), `SiteNav`, `SiteFooter`.
+
+## 2. Navigation
+
+- Barre fixe qui passe de transparente à obsidian avec fine bordure or dès le scroll.
+- Desktop : logo à gauche, liens espacés à droite avec soulignement or animé.
+- Mobile : bouton menu accessible (aria-expanded), panneau plein écran avec ouverture/fermeture animée, liens L'Origine / La Gamme / Les Formats / Millésime / Contact fonctionnant en ancres et vers `/contact`.
+- Même navigation réutilisée sur la page contact.
+
+## 3. Hero
+
+- Composition éditoriale : texte à gauche, `trioStudio` à droite en grand format, alignement vertical soigné, marges généreuses.
+- Titre serif plus concis et hiérarchisé, sur-titre micro-label, CTA or au contour net avec micro-interaction.
+- Mobile : texte d'abord, image ensuite, ratio d'image respecté, aucun débordement horizontal.
+
+## 4. Héritage
+
+- `trioVerger` traité en photographie éditoriale pleine hauteur, texte décalé avec filet or et rythme de lecture amélioré. Aucun nouveau fait ajouté.
+
+## 5. La Gamme
+
+- Trois colonnes éditoriales (empilées en mobile), chacune montrant le visuel réel de la bouteille Marasca correspondante (classique / premium / bio) déjà présent dans `src/assets`, au-dessus du nom, de la palette, de la description et de la mention de certification existante.
+- Pas de cartes arrondies : séparateurs verticaux fins et fond obsidian.
+
+## 6. FormatExplorer — correction du rendu
+
+Le bug : la largeur et la hauteur affichées sont forcées depuis les millimètres avec `object-fill`, ce qui étire les PNG dont le ratio diffère (et qui contiennent des marges transparentes).
+
+Correction :
+- Mesurer le ratio intrinsèque réel de chaque PNG (à l'exécution via `naturalWidth/naturalHeight`, mis en cache par image), puis dimensionner l'image uniquement par la hauteur physique (`height = hauteur_mm × échelle`) et laisser la largeur suivre le ratio, avec `object-contain` et `width: auto`.
+- Un cadre de largeur fixe accueille l'image, donc aucun saut de mise en page au changement de format ou de contenance.
+- Conserver la règle graduée et l'échelle commune : la comparaison de hauteur entre formats reste physiquement exacte, sans déformation.
+- Transitions : fondu croisé court sur l'image, transition douce de la hauteur, aucune image cachée superposée inutilement (une seule image montée, préchargement discret des variantes du format actif).
+
+## 7. FormatExplorer — UX
+
+- Conserver l'architecture liste à gauche / visuel au centre / fiche technique à droite en desktop ; en mobile : sélecteur de format défilable, visuel, puis fiche.
+- États actif et survol plus fins (filet or, léger décalage), sélecteur de contenance en pastilles nettes, sélecteur d'étiquette en tête de section.
+- Boutons accessibles au clavier avec `aria-pressed` et focus visible.
+
+## 8. Fiche technique
+
+- Présentation en lignes séparées par des filets fins plutôt qu'en grille de cartes.
+- Libellé de la dimension du corps adapté au format : `Ø` pour Dorica, Biolio et PET rond, `Section` pour Marasca (carrée) et pour les bidons. Les valeurs restent celles déjà présentes.
+
+## 9. Millésime
+
+- Quatre entrées (Origine, Cépage, Récolte, Dégustation) en grille éditoriale numérotée 01–04, filets fins, aucune donnée ajoutée.
+
+## 10. Footer
+
+- Bloc de marque, contacts, liens sociaux et liens légaux. Les liens `href="#"` (Confidentialité, Livraison) sont remplacés par du texte non cliquable « bientôt disponible » ou retirés — aucune fausse destination créée.
+
+## 11. Page contact
+
+- Mise en page alignée sur la home (même nav, même rythme, même typographie).
+- Champs avec `label` réels (visibles ou associés), états focus or, bouton premium, état de succès soigné, responsive mobile. Le `mailto:` existant est conservé tel quel.
+
+## 12. Responsive et qualité
+
+- Vérification à 320, 375, 390, 430, 768, 1024, 1280, 1440 et 1920 px : pas de débordement horizontal, typographie fluide, grilles saines, FormatExplorer lisible.
+- Métadonnées `head()` conservées, images sous la ligne de flottaison en `loading="lazy"`, aucune nouvelle dépendance.
+- Contrôle final : typecheck, build, parcours des trois routes, test de chaque format / étiquette / contenance et capture des rendus mobile et desktop.
+
+## Détails techniques
+
+- Nouveaux fichiers : `src/components/SiteNav.tsx`, `src/components/SiteFooter.tsx`, `src/components/Reveal.tsx`, `src/components/SectionLabel.tsx`.
+- Fichiers modifiés : `src/routes/index.tsx`, `src/routes/contact.tsx`, `src/components/FormatExplorer.tsx`, `src/styles.css`, et `src/routes/__root.tsx` seulement si un ajout de police ou de style global est nécessaire.
+- Aucun changement dans `src/lib/mcp/*`, `routeTree.gen.ts`, `src/routes/mcp.ts` ni dans `src/assets`.
