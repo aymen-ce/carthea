@@ -66,13 +66,22 @@ Correction :
 ## 7. FormatExplorer — UX
 
 - Conserver l'architecture liste à gauche / visuel au centre / fiche technique à droite en desktop ; en mobile : sélecteur de format défilable, visuel, puis fiche.
+- Parcours lisible en quatre temps annoncés par des micro-labels : étiquette → format → contenance → dimensions. Le ton reste celui d'un catalogue de maison, pas d'un configurateur industriel : peu de bordures, beaucoup de vide, chiffres discrets.
 - États actif et survol plus fins (filet or, léger décalage), sélecteur de contenance en pastilles nettes, sélecteur d'étiquette en tête de section.
 - Boutons accessibles au clavier avec `aria-pressed` et focus visible.
 
 ## 8. Fiche technique
 
-- Présentation en lignes séparées par des filets fins plutôt qu'en grille de cartes.
-- Libellé de la dimension du corps adapté au format : `Ø` pour Dorica, Biolio et PET rond, `Section` pour Marasca (carrée) et pour les bidons. Les valeurs restent celles déjà présentes.
+- Lignes en style sommaire éditorial : libellé à gauche, valeur alignée à droite, reliés par un filet pointillé fin, avec un interligne aéré et un petit corps typographique.
+
+```text
+Hauteur totale ....................... 274,7 mm
+Section .............................. 68 × 68 mm
+Poids à vide ......................... ≈ 450 g
+```
+
+- Libellé de la dimension du corps adapté au format : `Ø` pour Dorica, Biolio et PET rond, `Section` pour Marasca (carrée) et pour les bidons. Les valeurs restent exactement celles déjà présentes.
+
 
 ## 9. Millésime
 
