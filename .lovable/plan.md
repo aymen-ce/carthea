@@ -38,9 +38,9 @@ Référence : les sites de grandes maisons alimentaires et de luxe méditerrané
 
 ## 3. Hero
 
-- Composition éditoriale : texte à gauche, `trioStudio` à droite en grand format, alignement vertical soigné, marges généreuses.
-- Titre serif plus concis et hiérarchisé, sur-titre micro-label, CTA or au contour net avec micro-interaction.
-- Mobile : texte d'abord, image ensuite, ratio d'image respecté, aucun débordement horizontal.
+- Composition éditoriale forte : à gauche le nom CARTHÉA en lettrage serif espacé, un micro-label d'origine, un titre court, une phrase de positionnement, puis un CTA discret (filet or, remplissage au survol). À droite, `trioStudio` traité en grande photographie de campagne, avec un vide franc autour et un alignement précis sur la ligne de base du texte.
+- Aucune superposition de texte sur les bouteilles, aucun recadrage serré : le trio reste le point focal.
+- Mobile : nom, titre, phrase, CTA, puis l'image en pleine largeur avec ratio respecté et respiration verticale ; aucun débordement horizontal.
 
 ## 4. Héritage
 
@@ -48,8 +48,10 @@ Référence : les sites de grandes maisons alimentaires et de luxe méditerrané
 
 ## 5. La Gamme
 
-- Trois colonnes éditoriales (empilées en mobile), chacune montrant le visuel réel de la bouteille Marasca correspondante (classique / premium / bio) déjà présent dans `src/assets`, au-dessus du nom, de la palette, de la description et de la mention de certification existante.
-- Pas de cartes arrondies : séparateurs verticaux fins et fond obsidian.
+- Présentation en triptyque d'une même maison plutôt qu'en trois cartes : un chapeau commun, puis trois colonnes partageant la même ligne de sol et la même hauteur de bouteille, séparées par de simples filets verticaux.
+- Chaque colonne utilise le visuel Marasca réel correspondant (classique / premium / bio) déjà présent dans `src/assets`, dominant visuellement, avec en dessous le nom, la palette, la description et la mention de certification existante en petit corps.
+- Mobile : empilement avec la même ligne de sol et des filets horizontaux, sans cartes ni coins arrondis.
+
 
 ## 6. FormatExplorer — correction du rendu
 
