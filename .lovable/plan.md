@@ -89,16 +89,18 @@ Poids à vide ......................... ≈ 450 g
 
 ## 10. Footer
 
-- Bloc de marque, contacts, liens sociaux et liens légaux. Les liens `href="#"` (Confidentialité, Livraison) sont remplacés par du texte non cliquable « bientôt disponible » ou retirés — aucune fausse destination créée.
+- Footer minimaliste : nom de marque, deux adresses e-mail réelles, liens sociaux existants, mention légale de copyright. Les liens `href="#"` (Confidentialité, Livraison) sont retirés — aucune page fictive, aucune fausse destination.
 
 ## 11. Page contact
 
-- Mise en page alignée sur la home (même nav, même rythme, même typographie).
-- Champs avec `label` réels (visibles ou associés), états focus or, bouton premium, état de succès soigné, responsive mobile. Le `mailto:` existant est conservé tel quel.
+- Même niveau de finition que la home : même nav, même rythme vertical, même hiérarchie typographique ; une page de marque avec un bloc éditorial d'accroche, les coordonnées réelles et le formulaire, pas un formulaire isolé.
+- Champs avec `label` réels associés, états focus or, bouton premium, état de succès soigné, responsive mobile. Le `mailto:` existant est conservé tel quel.
 
 ## 12. Responsive et qualité
 
-- Vérification à 320, 375, 390, 430, 768, 1024, 1280, 1440 et 1920 px : pas de débordement horizontal, typographie fluide, grilles saines, FormatExplorer lisible.
+- Compositions repensées pour le mobile (320 / 375 / 390 / 430 px), et non simplement réduites : ordre de lecture propre, tailles de titres recalibrées, produits toujours entiers.
+- Vérification aussi à 768, 1024, 1280, 1440 et 1920 px : aucun scroll horizontal, typographie fluide, grilles saines, FormatExplorer lisible.
+
 - Métadonnées `head()` conservées, images sous la ligne de flottaison en `loading="lazy"`, aucune nouvelle dépendance.
 - Contrôle final : typecheck, build, parcours des trois routes, test de chaque format / étiquette / contenance et capture des rendus mobile et desktop.
 
