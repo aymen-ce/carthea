@@ -8,6 +8,20 @@ Objectif : passer d'un bon prototype à un site de marque haut de gamme, sans to
 - Toutes les cotes techniques, contenances, bagues, poids et sources restent identiques.
 - Routes `/`, `/contact`, `/mcp`, serveur MCP et fichiers générés : inchangés.
 - Palette obsidian / or / sable / vert olive, serif Cormorant + sans Instrument.
+- Aucune donnée, aucun nom de produit, aucune certification ou origine inventée.
+
+## 0. Direction artistique
+
+Référence : les sites de grandes maisons alimentaires et de luxe méditerranéen — beaucoup de vide, peu d'éléments, chaque image traitée comme une photographie de campagne.
+
+- Composition : grille éditoriale large, marges généreuses, sections respirantes ; jamais plus de deux idées par écran.
+- Or : utilisé comme filet, micro-label et accent unique — jamais en aplat large ni en dégradé visible.
+- Formes : angles droits, filets de 1 px, pas de border-radius marqué, pas de cartes SaaS, ombres quasi absentes (seulement une ombre portée douce sous les produits détourés).
+- Mouvement : uniquement fondu et léger décalage vertical à l'apparition, transitions de 300–600 ms ; rien de gadget, rien de parallaxe, désactivé sous `prefers-reduced-motion`.
+- Produits : toujours entourés de vide, jamais rognés ni étirés, alignés sur une ligne de sol commune, tailles cohérentes d'une section à l'autre.
+- Ton : sobre, crédible, international — adapté à une clientèle export, notamment le Golfe.
+
+
 
 ## 1. Fondations design
 
@@ -24,9 +38,9 @@ Objectif : passer d'un bon prototype à un site de marque haut de gamme, sans to
 
 ## 3. Hero
 
-- Composition éditoriale : texte à gauche, `trioStudio` à droite en grand format, alignement vertical soigné, marges généreuses.
-- Titre serif plus concis et hiérarchisé, sur-titre micro-label, CTA or au contour net avec micro-interaction.
-- Mobile : texte d'abord, image ensuite, ratio d'image respecté, aucun débordement horizontal.
+- Composition éditoriale forte : à gauche le nom CARTHÉA en lettrage serif espacé, un micro-label d'origine, un titre court, une phrase de positionnement, puis un CTA discret (filet or, remplissage au survol). À droite, `trioStudio` traité en grande photographie de campagne, avec un vide franc autour et un alignement précis sur la ligne de base du texte.
+- Aucune superposition de texte sur les bouteilles, aucun recadrage serré : le trio reste le point focal.
+- Mobile : nom, titre, phrase, CTA, puis l'image en pleine largeur avec ratio respecté et respiration verticale ; aucun débordement horizontal.
 
 ## 4. Héritage
 
@@ -34,8 +48,10 @@ Objectif : passer d'un bon prototype à un site de marque haut de gamme, sans to
 
 ## 5. La Gamme
 
-- Trois colonnes éditoriales (empilées en mobile), chacune montrant le visuel réel de la bouteille Marasca correspondante (classique / premium / bio) déjà présent dans `src/assets`, au-dessus du nom, de la palette, de la description et de la mention de certification existante.
-- Pas de cartes arrondies : séparateurs verticaux fins et fond obsidian.
+- Présentation en triptyque d'une même maison plutôt qu'en trois cartes : un chapeau commun, puis trois colonnes partageant la même ligne de sol et la même hauteur de bouteille, séparées par de simples filets verticaux.
+- Chaque colonne utilise le visuel Marasca réel correspondant (classique / premium / bio) déjà présent dans `src/assets`, dominant visuellement, avec en dessous le nom, la palette, la description et la mention de certification existante en petit corps.
+- Mobile : empilement avec la même ligne de sol et des filets horizontaux, sans cartes ni coins arrondis.
+
 
 ## 6. FormatExplorer — correction du rendu
 
@@ -50,13 +66,22 @@ Correction :
 ## 7. FormatExplorer — UX
 
 - Conserver l'architecture liste à gauche / visuel au centre / fiche technique à droite en desktop ; en mobile : sélecteur de format défilable, visuel, puis fiche.
+- Parcours lisible en quatre temps annoncés par des micro-labels : étiquette → format → contenance → dimensions. Le ton reste celui d'un catalogue de maison, pas d'un configurateur industriel : peu de bordures, beaucoup de vide, chiffres discrets.
 - États actif et survol plus fins (filet or, léger décalage), sélecteur de contenance en pastilles nettes, sélecteur d'étiquette en tête de section.
 - Boutons accessibles au clavier avec `aria-pressed` et focus visible.
 
 ## 8. Fiche technique
 
-- Présentation en lignes séparées par des filets fins plutôt qu'en grille de cartes.
-- Libellé de la dimension du corps adapté au format : `Ø` pour Dorica, Biolio et PET rond, `Section` pour Marasca (carrée) et pour les bidons. Les valeurs restent celles déjà présentes.
+- Lignes en style sommaire éditorial : libellé à gauche, valeur alignée à droite, reliés par un filet pointillé fin, avec un interligne aéré et un petit corps typographique.
+
+```text
+Hauteur totale ....................... 274,7 mm
+Section .............................. 68 × 68 mm
+Poids à vide ......................... ≈ 450 g
+```
+
+- Libellé de la dimension du corps adapté au format : `Ø` pour Dorica, Biolio et PET rond, `Section` pour Marasca (carrée) et pour les bidons. Les valeurs restent exactement celles déjà présentes.
+
 
 ## 9. Millésime
 
@@ -64,16 +89,18 @@ Correction :
 
 ## 10. Footer
 
-- Bloc de marque, contacts, liens sociaux et liens légaux. Les liens `href="#"` (Confidentialité, Livraison) sont remplacés par du texte non cliquable « bientôt disponible » ou retirés — aucune fausse destination créée.
+- Footer minimaliste : nom de marque, deux adresses e-mail réelles, liens sociaux existants, mention légale de copyright. Les liens `href="#"` (Confidentialité, Livraison) sont retirés — aucune page fictive, aucune fausse destination.
 
 ## 11. Page contact
 
-- Mise en page alignée sur la home (même nav, même rythme, même typographie).
-- Champs avec `label` réels (visibles ou associés), états focus or, bouton premium, état de succès soigné, responsive mobile. Le `mailto:` existant est conservé tel quel.
+- Même niveau de finition que la home : même nav, même rythme vertical, même hiérarchie typographique ; une page de marque avec un bloc éditorial d'accroche, les coordonnées réelles et le formulaire, pas un formulaire isolé.
+- Champs avec `label` réels associés, états focus or, bouton premium, état de succès soigné, responsive mobile. Le `mailto:` existant est conservé tel quel.
 
 ## 12. Responsive et qualité
 
-- Vérification à 320, 375, 390, 430, 768, 1024, 1280, 1440 et 1920 px : pas de débordement horizontal, typographie fluide, grilles saines, FormatExplorer lisible.
+- Compositions repensées pour le mobile (320 / 375 / 390 / 430 px), et non simplement réduites : ordre de lecture propre, tailles de titres recalibrées, produits toujours entiers.
+- Vérification aussi à 768, 1024, 1280, 1440 et 1920 px : aucun scroll horizontal, typographie fluide, grilles saines, FormatExplorer lisible.
+
 - Métadonnées `head()` conservées, images sous la ligne de flottaison en `loading="lazy"`, aucune nouvelle dépendance.
 - Contrôle final : typecheck, build, parcours des trois routes, test de chaque format / étiquette / contenance et capture des rendus mobile et desktop.
 
