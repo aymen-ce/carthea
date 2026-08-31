@@ -8,6 +8,20 @@ Objectif : passer d'un bon prototype à un site de marque haut de gamme, sans to
 - Toutes les cotes techniques, contenances, bagues, poids et sources restent identiques.
 - Routes `/`, `/contact`, `/mcp`, serveur MCP et fichiers générés : inchangés.
 - Palette obsidian / or / sable / vert olive, serif Cormorant + sans Instrument.
+- Aucune donnée, aucun nom de produit, aucune certification ou origine inventée.
+
+## 0. Direction artistique
+
+Référence : les sites de grandes maisons alimentaires et de luxe méditerranéen — beaucoup de vide, peu d'éléments, chaque image traitée comme une photographie de campagne.
+
+- Composition : grille éditoriale large, marges généreuses, sections respirantes ; jamais plus de deux idées par écran.
+- Or : utilisé comme filet, micro-label et accent unique — jamais en aplat large ni en dégradé visible.
+- Formes : angles droits, filets de 1 px, pas de border-radius marqué, pas de cartes SaaS, ombres quasi absentes (seulement une ombre portée douce sous les produits détourés).
+- Mouvement : uniquement fondu et léger décalage vertical à l'apparition, transitions de 300–600 ms ; rien de gadget, rien de parallaxe, désactivé sous `prefers-reduced-motion`.
+- Produits : toujours entourés de vide, jamais rognés ni étirés, alignés sur une ligne de sol commune, tailles cohérentes d'une section à l'autre.
+- Ton : sobre, crédible, international — adapté à une clientèle export, notamment le Golfe.
+
+
 
 ## 1. Fondations design
 
