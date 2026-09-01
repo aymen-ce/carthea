@@ -1,5 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+
+import { Reveal } from "../components/Reveal";
+import { SectionLabel } from "../components/SectionLabel";
+import { SiteFooter } from "../components/SiteFooter";
+import { SiteNav } from "../components/SiteNav";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -28,39 +33,25 @@ function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
   const field =
-    "w-full bg-transparent border-b border-stone-800 py-3 text-sand placeholder:text-sand/30 focus:outline-none focus:border-gold transition-colors";
+    "w-full border-b border-white/12 bg-transparent py-3 text-sand placeholder:text-sand/30 transition-colors duration-500 focus:border-gold focus:outline-none";
 
   return (
-    <div className="min-h-screen bg-obsidian text-sand font-sans">
-      <nav className="w-full border-b border-stone-900">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link to="/" className="font-serif text-2xl tracking-widest text-gold uppercase">
-            CARTHÉA
-          </Link>
-          <Link
-            to="/"
-            className="text-sm uppercase tracking-widest hover:text-gold transition-colors"
-          >
-            Retour
-          </Link>
-        </div>
-      </nav>
+    <div className="min-h-screen bg-obsidian font-sans text-sand">
+      <SiteNav variant="page" />
 
-      <main className="max-w-7xl mx-auto px-6 py-24 grid grid-cols-12 gap-12">
-        <div className="col-span-12 lg:col-span-5">
-          <span className="text-gold text-sm tracking-[0.3em] uppercase block mb-6">
-            Contact
-          </span>
-          <h1 className="font-serif text-4xl md:text-6xl leading-tight text-balance mb-8 font-medium italic">
+      <main className="mx-auto grid max-w-[88rem] grid-cols-12 gap-y-16 px-6 pt-36 pb-24 lg:gap-x-16 lg:px-12 lg:pt-44 lg:pb-36">
+        <Reveal className="col-span-12 lg:col-span-5">
+          <SectionLabel>Contact</SectionLabel>
+          <h1 className="mt-8 mb-8 font-serif text-[clamp(2.4rem,5.5vw,4rem)] font-medium italic leading-[1.08] text-balance">
             Parlons du millésime.
           </h1>
-          <p className="text-sand/60 max-w-[46ch] text-pretty mb-10">
+          <p className="mb-12 max-w-[46ch] text-[15px] leading-[1.85] text-pretty text-sand/55">
             Commandes privées, distribution, presse ou visite des vergers du Djebel Bargou —
             nous répondons sous 48 heures.
           </p>
-          <div className="space-y-3 text-sm text-sand/60">
+          <div className="space-y-6 border-t border-white/8 pt-10 text-sm text-sand/60">
             <p>
-              <span className="text-gold/80 uppercase tracking-[0.2em] text-[10px] block mb-1">
+              <span className="mb-2 block text-[10px] uppercase tracking-[0.25em] text-gold/80">
                 Commandes
               </span>
               <a href="mailto:hello@carthea.tn" className="hover:text-sand transition-colors">
@@ -68,7 +59,7 @@ function Contact() {
               </a>
             </p>
             <p>
-              <span className="text-gold/80 uppercase tracking-[0.2em] text-[10px] block mb-1">
+              <span className="mb-2 block text-[10px] uppercase tracking-[0.25em] text-gold/80">
                 Professionnels
               </span>
               <a href="mailto:trade@carthea.tn" className="hover:text-sand transition-colors">
@@ -76,19 +67,19 @@ function Contact() {
               </a>
             </p>
             <p>
-              <span className="text-gold/80 uppercase tracking-[0.2em] text-[10px] block mb-1">
+              <span className="mb-2 block text-[10px] uppercase tracking-[0.25em] text-gold/80">
                 Atelier
               </span>
               Djebel Bargou, Siliana — Tunisie
             </p>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="col-span-12 lg:col-span-6 lg:col-start-7">
+        <Reveal delay={120} className="col-span-12 lg:col-span-6 lg:col-start-7">
           {sent ? (
-            <div className="border border-stone-900 p-10">
-              <h2 className="font-serif text-2xl text-gold mb-3">Merci, {form.name || "à bientôt"}.</h2>
-              <p className="text-sand/60 text-sm">
+            <div className="border border-white/10 p-10">
+              <h2 className="mb-3 font-serif text-3xl text-gold">Merci, {form.name || "à bientôt"}.</h2>
+              <p className="text-sm leading-relaxed text-sand/55">
                 Votre message est prêt à être envoyé depuis votre messagerie.
               </p>
             </div>
@@ -128,14 +119,16 @@ function Contact() {
               />
               <button
                 type="submit"
-                className="inline-flex items-center justify-center px-8 py-3 bg-gold text-obsidian text-sm uppercase tracking-widest font-medium transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center justify-center border border-gold/60 px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-gold transition-colors duration-500 hover:bg-gold hover:text-obsidian"
               >
                 Envoyer
               </button>
             </form>
           )}
-        </div>
+        </Reveal>
       </main>
+
+      <SiteFooter />
     </div>
   );
 }
