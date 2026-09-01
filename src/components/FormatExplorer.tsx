@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { packBox } from "../lib/pack-metrics";
 import doricaClassique from "../assets/pack-dorica-classique.png";
 import doricaPremium from "../assets/pack-dorica-premium.png";
 import doricaBio from "../assets/pack-dorica-bio.png";
@@ -49,6 +50,8 @@ type Format = {
   /** Origine des cotes */
   source: string;
   neck: string;
+  /** Le corps est-il rond (Ø) ou de section carrée ? */
+  bodyShape: "round" | "section";
   capacities: Capacity[];
 };
 
@@ -62,6 +65,7 @@ const FORMATS: Format[] = [
     use: "Grande distribution · Caviste · Cadeau",
     source: "Cotes indicatives — fiche technique sur demande",
     neck: "Bague 31,5 Pilferproof",
+    bodyShape: "round",
     capacities: [
       { label: "250 ml", liters: 0.25, height: 205, width: 56.6, weight: 250 },
       { label: "500 ml", liters: 0.5, height: 253, width: 68.5, weight: 400 },
@@ -77,6 +81,7 @@ const FORMATS: Format[] = [
     use: "Coffret · Épicerie fine · Premium",
     source: "Plans STV (Société Tunisienne de Verreries)",
     neck: "Bague Pilferproof 31,5 STD · débouchage Ø 20,6 mm",
+    bodyShape: "section",
     capacities: [
       { label: "250 ml", liters: 0.25, height: 211.5, width: 46.6, weight: 250, brimful: 265, extra: "Section carrée 46,6 × 46,6 mm" },
       { label: "500 ml", liters: 0.5, height: 260, width: 57.5, weight: 390, brimful: 520, extra: "Section carrée 57,5 × 57,5 mm" },
@@ -93,6 +98,7 @@ const FORMATS: Format[] = [
     use: "Bio · Découverte · Échantillon · Cadeau",
     source: "Plans Vetreria Etrusca (Montelupo F.no, Italie)",
     neck: "Imboccatura BG 21 · Ø bague 30,4 mm · passage min. 16 mm",
+    bodyShape: "round",
     capacities: [
       { label: "100 ml", liters: 0.1, height: 105, width: 51.2, weight: 130, brimful: 109, extra: "Base Ø 44 mm" },
       { label: "250 ml", liters: 0.25, height: 135, width: 68.3, weight: 250, brimful: 266, extra: "Base Ø 43,3 mm" },
@@ -110,6 +116,7 @@ const FORMATS: Format[] = [
     use: "Restauration · Cuisine familiale · Professionnel",
     source: "Cotes indicatives — fiche technique sur demande",
     neck: "Bouchon à vis Ø 42 mm avec poignée",
+    bodyShape: "section",
     capacities: [
       { label: "2 L", liters: 2, height: 205, width: 95, extra: "Section 95 × 95 mm" },
       { label: "3 L", liters: 3, height: 240, width: 108, extra: "Section 108 × 108 mm" },
@@ -126,6 +133,7 @@ const FORMATS: Format[] = [
     use: "Grande consommation · Restauration · Export",
     source: "Cotes indicatives — fiche technique sur demande",
     neck: "Bouchon à vis 38 mm · poignée intégrée",
+    bodyShape: "round",
     capacities: [
       { label: "3 L", liters: 3, height: 290, width: 110, extra: "Corps 110 × 110 mm" },
       { label: "5 L", liters: 5, height: 335, width: 145, extra: "Corps 145 × 130 mm" },
@@ -137,11 +145,24 @@ const FORMATS: Format[] = [
 const MAX_HEIGHT = Math.max(
   ...FORMATS.flatMap((f) => f.capacities.map((c) => c.height)),
 );
-const DISPLAY_HEIGHT = 352;
-const MM_TO_PX = DISPLAY_HEIGHT / MAX_HEIGHT;
 
 function fmt(n: number) {
   return String(n).replace(".", ",");
+}
+
+function SpecRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-baseline gap-3 py-3">
+      <dt className="shrink-0 text-[10px] uppercase tracking-[0.22em] text-sand/45">
+        {label}
+      </dt>
+      <span
+        aria-hidden
+        className="min-w-6 flex-1 translate-y-[-3px] border-b border-dotted border-white/12"
+      />
+      <dd className="shrink-0 font-sans text-sm text-sand/90 tabular-nums">{value}</dd>
+    </div>
+  );
 }
 
 export function FormatExplorer() {
@@ -152,196 +173,189 @@ export function FormatExplorer() {
 
   const format = FORMATS.find((f) => f.id === formatId) ?? initialFormat;
   if (!format) return null;
-  const capacity = format.capacities[Math.min(capIndex, format.capacities.length - 1)] ?? format.capacities[0];
+  const capacity =
+    format.capacities[Math.min(capIndex, format.capacities.length - 1)] ??
+    format.capacities[0];
   if (!capacity) return null;
 
+  // Échelle physique commune : seule la HAUTEUR pilote la taille affichée.
+  // La largeur suit le ratio intrinsèque du PNG — aucun étirement possible.
+  const STAGE_HEIGHT = 420;
+  const FLOOR = 64;
+  const usable = STAGE_HEIGHT - FLOOR - 24;
+  const productHeightPx = (capacity.height / MAX_HEIGHT) * usable;
+  const box = packBox(format.id, variant, productHeightPx);
+
+  const bodyLabel = format.bodyShape === "round" ? "Corps" : "Section";
+  const bodyValue =
+    format.bodyShape === "round"
+      ? `Ø ${fmt(capacity.width)} mm`
+      : `${fmt(capacity.width)} × ${fmt(capacity.width)} mm`;
+
+  const chip = (active: boolean) =>
+    `px-4 py-2 text-[11px] uppercase tracking-[0.2em] border transition-colors duration-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold ${
+      active
+        ? "border-gold/70 text-gold bg-gold/5"
+        : "border-white/10 text-sand/60 hover:border-gold/40 hover:text-sand"
+    }`;
+
   return (
-    <div className="flex flex-col gap-10">
-      {/* Sélecteur d'étiquette */}
-      <div className="flex flex-wrap items-center gap-3">
-        <span className="text-[10px] uppercase tracking-[0.25em] text-sand/40 mr-2">
-          Étiquette
+    <div className="flex flex-col gap-12">
+      {/* Étape 1 — étiquette */}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-3">
+        <span className="mr-2 text-[10px] uppercase tracking-[0.3em] text-sand/35">
+          01 — Étiquette
         </span>
-        {VARIANTS.map((v) => {
-          const active = v.id === variant;
-          return (
-            <button
-              key={v.id}
-              type="button"
-              onClick={() => setVariant(v.id)}
-              className={`flex items-center gap-3 px-4 py-2 border transition-all duration-300 hover:-translate-y-0.5 ${
-                active
-                  ? "border-gold bg-gold/10 text-gold"
-                  : "border-stone-800 bg-stone-900/40 text-sand/70 hover:border-gold/60"
-              }`}
-            >
-              <span className={`h-4 w-4 rounded-full ring-1 ${v.swatch}`} />
-              <span className="text-xs uppercase tracking-wider">{v.name}</span>
-              <span className="text-[10px] tracking-[0.15em] text-sand/35">{v.palette}</span>
-            </button>
-          );
-        })}
+        {VARIANTS.map((v) => (
+          <button
+            key={v.id}
+            type="button"
+            aria-pressed={v.id === variant}
+            onClick={() => setVariant(v.id)}
+            className={`${chip(v.id === variant)} flex items-center gap-3`}
+          >
+            <span aria-hidden className={`h-3 w-3 rounded-full ring-1 ${v.swatch}`} />
+            {v.name}
+          </button>
+        ))}
       </div>
 
-      <div className="grid grid-cols-12 gap-10 items-stretch">
-        {/* Selector list */}
-        <div className="col-span-12 lg:col-span-4 flex flex-col divide-y divide-stone-900 border-y border-stone-900">
-          {FORMATS.map((f) => {
-            const active = f.id === format.id;
-            return (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => {
-                  setFormatId(f.id);
-                  setCapIndex(0);
-                }}
-                className={`group text-left py-5 px-4 transition-all duration-500 flex items-baseline justify-between gap-4 ${
-                  active ? "bg-stone-900/60 pl-6" : "hover:bg-stone-900/30 hover:pl-6"
-                }`}
-              >
-                <span>
-                  <span
-                    className={`block font-serif text-2xl transition-colors duration-300 ${
-                      active ? "text-gold" : "text-sand group-hover:text-gold/80"
+      <div className="grid grid-cols-12 gap-x-10 gap-y-12">
+        {/* Étape 2 — format */}
+        <div className="col-span-12 lg:col-span-3">
+          <span className="mb-5 block text-[10px] uppercase tracking-[0.3em] text-sand/35">
+            02 — Format
+          </span>
+          <ul className="flex flex-col border-t border-white/8">
+            {FORMATS.map((f) => {
+              const active = f.id === format.id;
+              return (
+                <li key={f.id} className="border-b border-white/8">
+                  <button
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() => {
+                      setFormatId(f.id);
+                      setCapIndex(0);
+                    }}
+                    className={`group w-full py-5 text-left transition-[padding,color] duration-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold ${
+                      active ? "pl-4" : "pl-0 hover:pl-3"
                     }`}
                   >
-                    {f.name}
-                  </span>
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-sand/40">
-                    {f.material} · {f.capacities.length} contenances
-                  </span>
-                </span>
-                <span
-                  className={`h-px bg-gold transition-all duration-500 ${
-                    active ? "w-8 opacity-100" : "w-0 opacity-0 group-hover:w-4 group-hover:opacity-60"
-                  }`}
-                />
-              </button>
-            );
-          })}
+                    <span
+                      className={`block font-serif text-xl leading-tight transition-colors duration-500 sm:text-2xl ${
+                        active ? "text-gold" : "text-sand/85 group-hover:text-sand"
+                      }`}
+                    >
+                      {f.name}
+                    </span>
+                    <span className="mt-1 block text-[10px] uppercase tracking-[0.2em] text-sand/35">
+                      {f.material} · {f.capacities.length} contenances
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
-        {/* Visual stage — échelle réelle */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-4 relative bg-stone-900/40 border border-stone-900 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,color-mix(in_oklab,var(--color-gold)_14%,transparent),transparent_65%)]" />
-          {/* Règle graduée */}
-          <div className="absolute left-4 top-8 bottom-16 w-px bg-stone-800">
-            <span className="absolute -top-6 -left-2 text-[9px] tracking-[0.15em] text-sand/35">
-              {fmt(MAX_HEIGHT)} mm
-            </span>
+        {/* Scène produit — échelle physique, ratio intrinsèque préservé */}
+        <div className="col-span-12 lg:col-span-5">
+          <div
+            className="relative mx-auto w-full max-w-[26rem] overflow-hidden border border-white/8"
+            style={{ height: `${STAGE_HEIGHT}px` }}
+          >
+            {/* Ligne de sol */}
             <span
-              className="absolute left-0 w-3 h-px bg-gold transition-all duration-700"
-              style={{ bottom: `${(capacity.height / MAX_HEIGHT) * 100}%` }}
+              aria-hidden
+              className="absolute inset-x-8 h-px bg-white/8"
+              style={{ bottom: `${FLOOR}px` }}
             />
-          </div>
+            {/* Repère de hauteur */}
+            <span
+              aria-hidden
+              className="absolute left-6 w-3 bg-gold/70 transition-all duration-700"
+              style={{ bottom: `${FLOOR}px`, height: `${productHeightPx}px`, width: "1px" }}
+            />
+            <span
+              className="absolute left-4 text-[9px] uppercase tracking-[0.2em] text-sand/35 transition-all duration-700"
+              style={{ bottom: `${FLOOR + productHeightPx + 6}px` }}
+            >
+              {fmt(capacity.height)} mm
+            </span>
 
-          <div className="relative h-[26rem] md:h-[32rem] flex items-end justify-center p-8">
-            {FORMATS.map((f) => (
+            <div
+              className="absolute inset-x-0 flex items-end justify-center"
+              style={{ bottom: `${FLOOR}px` }}
+            >
               <img
-                key={f.id}
-                src={f.images[variant]}
-                alt={`Emballage CARTHÉA ${f.name} — étiquette ${variant}`}
-                loading="lazy"
-                width={768}
-                height={1024}
-                style={{
-                  width: `${capacity.width * MM_TO_PX}px`,
-                  height: `${capacity.height * MM_TO_PX}px`,
-                }}
-                className={`absolute bottom-16 object-fill origin-bottom transition-[width,height,opacity,filter] duration-700 ease-out drop-shadow-[0_25px_45px_rgba(0,0,0,0.6)] ${
-                  f.id === format.id ? "opacity-100 blur-0" : "opacity-0 blur-sm pointer-events-none"
+                key={`${format.id}-${variant}`}
+                src={format.images[variant]}
+                alt={`Emballage CARTHÉA ${format.name} ${capacity.label} — étiquette ${
+                  VARIANTS.find((v) => v.id === variant)?.name ?? variant
                 }`}
+                loading="lazy"
+                decoding="async"
+                style={{
+                  height: `${box.imgHeight}px`,
+                  width: `${box.imgWidth}px`,
+                  marginBottom: `${-box.bottomOffset}px`,
+                }}
+                className="pack-fade max-w-full object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.55)] transition-[height,width] duration-700 ease-out"
               />
-            ))}
-          </div>
-          <div className="absolute bottom-4 left-0 right-0 text-center">
-            <span className="font-serif text-4xl text-gold/90 tracking-wide block leading-none">
+            </div>
+
+            <span className="absolute inset-x-0 bottom-5 text-center font-serif text-2xl tracking-wide text-gold/90">
               {capacity.label}
             </span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-sand/40">
-              H {fmt(capacity.height)} mm · corps {fmt(capacity.width)} mm · échelle commune
-            </span>
           </div>
         </div>
 
-        {/* Details */}
-        <div
-          key={format.id}
-          className="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-2 duration-500"
-        >
-          <div>
-            <h3 className="font-serif text-4xl text-sand mb-2">{format.name}</h3>
-            <span className="text-[10px] uppercase tracking-[0.25em] text-gold/80">
-              {format.material}
-            </span>
-          </div>
-          <p className="text-sm text-sand/60 text-pretty max-w-[42ch] leading-relaxed">
+        {/* Étapes 3 & 4 — contenance et dimensions */}
+        <div className="col-span-12 lg:col-span-4">
+          <h3 className="font-serif text-3xl text-sand sm:text-4xl">{format.name}</h3>
+          <p className="mt-4 max-w-[44ch] text-sm leading-relaxed text-sand/55">
             {format.desc}
           </p>
 
-          <div>
-            <span className="text-[10px] uppercase tracking-[0.25em] text-sand/40 block mb-3">
-              Choisissez la contenance
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {format.capacities.map((c, i) => {
-                const active = c.label === capacity.label;
-                return (
-                  <button
-                    key={c.label}
-                    type="button"
-                    onClick={() => setCapIndex(i)}
-                    className={`px-4 py-2 text-xs uppercase tracking-wider border transition-all duration-300 hover:-translate-y-0.5 ${
-                      active
-                        ? "border-gold text-obsidian bg-gold shadow-[0_8px_20px_-8px_var(--color-gold)]"
-                        : "border-stone-800 text-sand/80 bg-stone-900/40 hover:border-gold/60 hover:text-gold"
-                    }`}
-                  >
-                    {c.label}
-                  </button>
-                );
-              })}
-            </div>
+          <span className="mt-10 mb-4 block text-[10px] uppercase tracking-[0.3em] text-sand/35">
+            03 — Contenance
+          </span>
+          <div className="flex flex-wrap gap-2">
+            {format.capacities.map((c, i) => (
+              <button
+                key={c.label}
+                type="button"
+                aria-pressed={c.label === capacity.label}
+                onClick={() => setCapIndex(i)}
+                className={chip(c.label === capacity.label)}
+              >
+                {c.label}
+              </button>
+            ))}
           </div>
 
-          {/* Fiche technique */}
-          <dl className="grid grid-cols-2 gap-px bg-stone-900 border border-stone-900 text-sm">
-            <div className="bg-obsidian p-4">
-              <dt className="text-[10px] uppercase tracking-[0.2em] text-sand/35 mb-1">Hauteur totale</dt>
-              <dd className="text-sand">{fmt(capacity.height)} mm</dd>
-            </div>
-            <div className="bg-obsidian p-4">
-              <dt className="text-[10px] uppercase tracking-[0.2em] text-sand/35 mb-1">Corps</dt>
-              <dd className="text-sand">Ø {fmt(capacity.width)} mm</dd>
-            </div>
+          <span className="mt-10 mb-2 block text-[10px] uppercase tracking-[0.3em] text-sand/35">
+            04 — Dimensions
+          </span>
+          <dl className="divide-y divide-white/6 border-y border-white/8">
+            <SpecRow label="Hauteur totale" value={`${fmt(capacity.height)} mm`} />
+            <SpecRow label={bodyLabel} value={bodyValue} />
             {capacity.brimful ? (
-              <div className="bg-obsidian p-4">
-                <dt className="text-[10px] uppercase tracking-[0.2em] text-sand/35 mb-1">Capacité ras bord</dt>
-                <dd className="text-sand">{capacity.brimful} ml</dd>
-              </div>
+              <SpecRow label="Capacité ras bord" value={`${capacity.brimful} ml`} />
             ) : null}
             {capacity.weight ? (
-              <div className="bg-obsidian p-4">
-                <dt className="text-[10px] uppercase tracking-[0.2em] text-sand/35 mb-1">Poids à vide</dt>
-                <dd className="text-sand">≈ {capacity.weight} g</dd>
-              </div>
-            ) : null}
-            <div className="bg-obsidian p-4 col-span-2">
-              <dt className="text-[10px] uppercase tracking-[0.2em] text-sand/35 mb-1">Col / fermeture</dt>
-              <dd className="text-sand/80 text-xs leading-relaxed">{format.neck}</dd>
-            </div>
-            {capacity.extra ? (
-              <div className="bg-obsidian p-4 col-span-2">
-                <dt className="text-[10px] uppercase tracking-[0.2em] text-sand/35 mb-1">Détail</dt>
-                <dd className="text-sand/80 text-xs leading-relaxed">{capacity.extra}</dd>
-              </div>
+              <SpecRow label="Poids à vide" value={`≈ ${capacity.weight} g`} />
             ) : null}
           </dl>
 
-          <span className="text-[10px] uppercase tracking-[0.15em] text-sand/35 mt-auto pt-4 border-t border-stone-900">
-            {format.use} — {format.source}
-          </span>
+          <div className="mt-6 space-y-2 text-xs leading-relaxed text-sand/45">
+            <p>{format.neck}</p>
+            {capacity.extra ? <p>{capacity.extra}</p> : null}
+            <p className="pt-3 text-[10px] uppercase tracking-[0.18em] text-sand/30">
+              {format.use} — {format.source}
+            </p>
+          </div>
         </div>
       </div>
     </div>
