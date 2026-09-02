@@ -220,9 +220,9 @@ export function FormatExplorer() {
         ))}
       </div>
 
-      <div className="grid grid-cols-12 gap-x-10 gap-y-12">
+      <div className="grid grid-cols-1 gap-y-12 lg:grid-cols-12 lg:gap-x-10">
         {/* Étape 2 — format */}
-        <div className="col-span-12 lg:col-span-3">
+        <div className="min-w-0 lg:col-span-3">
           <span className="mb-5 block text-[10px] uppercase tracking-[0.3em] text-sand/35">
             02 — Format
           </span>
@@ -260,7 +260,7 @@ export function FormatExplorer() {
         </div>
 
         {/* Scène produit — échelle physique, ratio intrinsèque préservé */}
-        <div className="col-span-12 lg:col-span-5">
+        <div className="min-w-0 lg:col-span-5">
           <div
             className="relative mx-auto w-full max-w-[26rem] overflow-hidden border border-white/8"
             style={{ height: `${STAGE_HEIGHT}px` }}
@@ -312,7 +312,7 @@ export function FormatExplorer() {
         </div>
 
         {/* Étapes 3 & 4 — contenance et dimensions */}
-        <div className="col-span-12 lg:col-span-4">
+        <div className="min-w-0 lg:col-span-4">
           <h3 className="font-serif text-3xl text-sand sm:text-4xl">{format.name}</h3>
           <p className="mt-4 max-w-[44ch] text-sm leading-relaxed text-sand/55">
             {format.desc}
