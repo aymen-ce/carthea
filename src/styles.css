@@ -208,3 +208,25 @@ html {
   scroll-padding-top: 5rem;
 }
 
+/*
+ * Arabe / RTL — typographie adaptée sans toucher à l'identité latine.
+ * Les visuels ne sont jamais miroités : seule la mise en page logique bascule.
+ */
+html[dir="rtl"] {
+  --font-sans: "IBM Plex Sans Arabic", "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Amiri", "Cormorant Garamond", ui-serif, Georgia, serif;
+}
+
+/* L'interlettrage brise les ligatures arabes : neutralisé, sauf sur les éléments latins (.latin). */
+html[dir="rtl"] *:not(.latin):not(.latin *) {
+  letter-spacing: 0 !important;
+}
+
+html[dir="rtl"] .italic:not(.latin) {
+  font-style: normal;
+}
+
+html[dir="rtl"] .font-serif:not(.latin) {
+  line-height: 1.35;
+}
+

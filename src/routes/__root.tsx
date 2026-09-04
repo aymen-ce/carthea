@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { I18nProvider } from "../lib/i18n";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -81,7 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "CARTHÉA captures the soul of ancient Carthage. A singular monocultivar extra virgin olive oil, harvested from millennia-old Tunisian groves.",
+          "CARTHÉA capture l'âme de l'antique Carthage. Une huile d'olive vierge extra monovariétale, récoltée dans des vergers tunisiens millénaires.",
       },
       { name: "author", content: "CARTHÉA" },
       {
@@ -91,9 +92,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "CARTHÉA captures the soul of ancient Carthage. A singular monocultivar extra virgin olive oil, harvested from millennia-old Tunisian groves.",
+          "CARTHÉA capture l'âme de l'antique Carthage. Une huile d'olive vierge extra monovariétale, récoltée dans des vergers tunisiens millénaires.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "CARTHÉA" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@carthéa" },
     ],
@@ -113,7 +115,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Sans:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Sans:wght@400;500&family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
@@ -126,7 +128,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="fr" dir="ltr" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
@@ -143,8 +145,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <I18nProvider>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </I18nProvider>
     </QueryClientProvider>
   );
 }

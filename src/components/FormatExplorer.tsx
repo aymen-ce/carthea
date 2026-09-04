@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { fill, useI18n } from "../lib/i18n";
 import { packBox } from "../lib/pack-metrics";
 import doricaClassique from "../assets/pack-dorica-classique.png";
 import doricaPremium from "../assets/pack-dorica-premium.png";
@@ -19,11 +20,14 @@ import petBio from "../assets/pack-pet-bio.png";
 
 type VariantId = "classique" | "premium" | "bio";
 
-const VARIANTS: { id: VariantId; name: string; palette: string; swatch: string }[] = [
-  { id: "classique", name: "Classique", palette: "Noir & Or", swatch: "bg-obsidian ring-gold/70" },
-  { id: "premium", name: "Premium", palette: "Vert & Or", swatch: "bg-[oklch(0.28_0.06_140)] ring-gold/70" },
-  { id: "bio", name: "100% Bio", palette: "Blanc & Vert", swatch: "bg-sand ring-sand/50" },
+const VARIANTS: { id: VariantId; swatch: string }[] = [
+  { id: "classique", swatch: "bg-obsidian ring-gold/70" },
+  { id: "premium", swatch: "bg-[oklch(0.28_0.06_140)] ring-gold/70" },
+  { id: "bio", swatch: "bg-sand ring-sand/50" },
 ];
+
+/** Détail complémentaire structuré (les cotes restent des nombres, jamais traduits). */
+type Extra = { kind: "square" | "base" | "section" | "body"; a: number; b?: number };
 
 type Capacity = {
   label: string;
@@ -36,20 +40,15 @@ type Capacity = {
   weight?: number;
   /** Capacité ras bord en ml */
   brimful?: number;
-  /** Détail complémentaire (bague, base…) */
-  extra?: string;
+  /** Détail complémentaire (section, base…) */
+  extra?: Extra;
 };
 
+type FormatId = "dorica" | "marasca" | "biolio" | "bidon" | "pet";
+
 type Format = {
-  id: string;
-  name: string;
-  material: string;
+  id: FormatId;
   images: Record<VariantId, string>;
-  desc: string;
-  use: string;
-  /** Origine des cotes */
-  source: string;
-  neck: string;
   /** Le corps est-il rond (Ø) ou de section carrée ? */
   bodyShape: "round" | "section";
   capacities: Capacity[];
