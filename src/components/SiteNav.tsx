@@ -66,7 +66,7 @@ export function SiteNav({ variant = "home" }: { variant?: "home" | "page" }) {
           Carthéa
         </Link>
 
-        <div className="hidden items-center gap-10 md:flex lg:gap-12">
+        <div className="hidden items-center gap-8 lg:flex xl:gap-12">
           <nav aria-label={t.nav.main}>
             <ul className="flex items-center gap-10">
               {ITEMS.map((item) => (
@@ -90,7 +90,7 @@ export function SiteNav({ variant = "home" }: { variant?: "home" | "page" }) {
 
         <button
           type="button"
-          className="md:hidden -me-2 flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-[7px]"
+          className="lg:hidden -me-2 flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-[7px]"
           aria-expanded={open}
           aria-controls="menu-mobile"
           aria-label={open ? t.nav.close : t.nav.open}
@@ -113,7 +113,7 @@ export function SiteNav({ variant = "home" }: { variant?: "home" | "page" }) {
       <div
         id="menu-mobile"
         hidden={!open}
-        className={`md:hidden fixed inset-0 top-20 overflow-y-auto bg-obsidian transition-opacity duration-500 ${
+        className={`lg:hidden fixed inset-0 top-20 overflow-y-auto bg-obsidian transition-opacity duration-500 ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
