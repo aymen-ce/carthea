@@ -57,13 +57,7 @@ type Format = {
 const FORMATS: Format[] = [
   {
     id: "dorica",
-    name: "Bouteille Dorica",
-    material: "Verre",
     images: { classique: doricaClassique, premium: doricaPremium, bio: doricaBio },
-    desc: "La silhouette ronde et généreuse, typique des huiles d'olive de la Méditerranée. Solide et présente bien sur la table et en linéaire.",
-    use: "Grande distribution · Caviste · Cadeau",
-    source: "Cotes indicatives — fiche technique sur demande",
-    neck: "Bague 31,5 Pilferproof",
     bodyShape: "round",
     capacities: [
       { label: "250 ml", liters: 0.25, height: 205, width: 56.6, weight: 250 },
@@ -73,69 +67,45 @@ const FORMATS: Format[] = [
   },
   {
     id: "marasca",
-    name: "Bouteille Marasca",
-    material: "Verre",
     images: { classique: marascaClassique, premium: marascaPremium, bio: marascaBio },
-    desc: "Ligne élancée et élégante, reconnue pour son style italien raffiné. Idéale pour les coffrets premium et les épiceries fines.",
-    use: "Coffret · Épicerie fine · Premium",
-    source: "Plans STV (Société Tunisienne de Verreries)",
-    neck: "Bague Pilferproof 31,5 STD · débouchage Ø 20,6 mm",
     bodyShape: "section",
     capacities: [
-      { label: "250 ml", liters: 0.25, height: 211.5, width: 46.6, weight: 250, brimful: 265, extra: "Section carrée 46,6 × 46,6 mm" },
-      { label: "500 ml", liters: 0.5, height: 260, width: 57.5, weight: 390, brimful: 520, extra: "Section carrée 57,5 × 57,5 mm" },
-      { label: "750 ml", liters: 0.75, height: 274.7, width: 68, weight: 450, brimful: 775, extra: "Section carrée 68 × 68 mm" },
-      { label: "1 L", liters: 1, height: 300, width: 76.1, weight: 605, brimful: 1040, extra: "Section carrée 76,1 × 76,1 mm" },
+      { label: "250 ml", liters: 0.25, height: 211.5, width: 46.6, weight: 250, brimful: 265, extra: { kind: "square", a: 46.6, b: 46.6 } },
+      { label: "500 ml", liters: 0.5, height: 260, width: 57.5, weight: 390, brimful: 520, extra: { kind: "square", a: 57.5, b: 57.5 } },
+      { label: "750 ml", liters: 0.75, height: 274.7, width: 68, weight: 450, brimful: 775, extra: { kind: "square", a: 68, b: 68 } },
+      { label: "1 L", liters: 1, height: 300, width: 76.1, weight: 605, brimful: 1040, extra: { kind: "square", a: 76.1, b: 76.1 } },
     ],
   },
   {
     id: "biolio",
-    name: "Bouteille Biolio DOP/T",
-    material: "Verre",
     images: { classique: biolioClassique, premium: biolioPremium, bio: biolioBio },
-    desc: "Forme moderne et distincte, parfaitement adaptée aux gammes bio et aux coffrets découverte. Le format 100 ml est idéal pour les échantillons.",
-    use: "Bio · Découverte · Échantillon · Cadeau",
-    source: "Plans Vetreria Etrusca (Montelupo F.no, Italie)",
-    neck: "Imboccatura BG 21 · Ø bague 30,4 mm · passage min. 16 mm",
     bodyShape: "round",
     capacities: [
-      { label: "100 ml", liters: 0.1, height: 105, width: 51.2, weight: 130, brimful: 109, extra: "Base Ø 44 mm" },
-      { label: "250 ml", liters: 0.25, height: 135, width: 68.3, weight: 250, brimful: 266, extra: "Base Ø 43,3 mm" },
-      { label: "500 ml", liters: 0.5, height: 178, width: 78, weight: 350, brimful: 515, extra: "Base Ø 48,2 mm" },
-      { label: "750 ml", liters: 0.75, height: 202, width: 89, weight: 500, brimful: 775, extra: "Base Ø 58,2 mm" },
-      { label: "1 L", liters: 1, height: 241, width: 91, weight: 600, brimful: 1030, extra: "Base Ø 56,7 mm" },
+      { label: "100 ml", liters: 0.1, height: 105, width: 51.2, weight: 130, brimful: 109, extra: { kind: "base", a: 44 } },
+      { label: "250 ml", liters: 0.25, height: 135, width: 68.3, weight: 250, brimful: 266, extra: { kind: "base", a: 43.3 } },
+      { label: "500 ml", liters: 0.5, height: 178, width: 78, weight: 350, brimful: 515, extra: { kind: "base", a: 48.2 } },
+      { label: "750 ml", liters: 0.75, height: 202, width: 89, weight: 500, brimful: 775, extra: { kind: "base", a: 58.2 } },
+      { label: "1 L", liters: 1, height: 241, width: 91, weight: 600, brimful: 1030, extra: { kind: "base", a: 56.7 } },
     ],
   },
   {
     id: "bidon",
-    name: "Bidon Métallique",
-    material: "Fer-blanc alimentaire",
     images: { classique: bidonClassique, premium: bidonPremium, bio: bidonBio },
-    desc: "Protection optimale contre la lumière et l'oxygène. Format robuste pour une consommation quotidienne en cuisine ou en restauration.",
-    use: "Restauration · Cuisine familiale · Professionnel",
-    source: "Cotes indicatives — fiche technique sur demande",
-    neck: "Bouchon à vis Ø 42 mm avec poignée",
     bodyShape: "section",
     capacities: [
-      { label: "2 L", liters: 2, height: 205, width: 95, extra: "Section 95 × 95 mm" },
-      { label: "3 L", liters: 3, height: 240, width: 108, extra: "Section 108 × 108 mm" },
-      { label: "4 L", liters: 4, height: 290, width: 108, extra: "Section 108 × 108 mm" },
-      { label: "5 L", liters: 5, height: 300, width: 120, extra: "Section 120 × 120 mm" },
+      { label: "2 L", liters: 2, height: 205, width: 95, extra: { kind: "section", a: 95, b: 95 } },
+      { label: "3 L", liters: 3, height: 240, width: 108, extra: { kind: "section", a: 108, b: 108 } },
+      { label: "4 L", liters: 4, height: 290, width: 108, extra: { kind: "section", a: 108, b: 108 } },
+      { label: "5 L", liters: 5, height: 300, width: 120, extra: { kind: "section", a: 120, b: 120 } },
     ],
   },
   {
     id: "pet",
-    name: "Bouteille PET",
-    material: "PET alimentaire",
     images: { classique: petClassique, premium: petPremium, bio: petBio },
-    desc: "Légèreté et résistance pour un usage pratique et une logistique simplifiée. Parfait pour les volumes et la grande consommation.",
-    use: "Grande consommation · Restauration · Export",
-    source: "Cotes indicatives — fiche technique sur demande",
-    neck: "Bouchon à vis 38 mm · poignée intégrée",
     bodyShape: "round",
     capacities: [
-      { label: "3 L", liters: 3, height: 290, width: 110, extra: "Corps 110 × 110 mm" },
-      { label: "5 L", liters: 5, height: 335, width: 145, extra: "Corps 145 × 130 mm" },
+      { label: "3 L", liters: 3, height: 290, width: 110, extra: { kind: "body", a: 110, b: 110 } },
+      { label: "5 L", liters: 5, height: 335, width: 145, extra: { kind: "body", a: 145, b: 130 } },
     ],
   },
 ];
@@ -144,10 +114,6 @@ const FORMATS: Format[] = [
 const MAX_HEIGHT = Math.max(
   ...FORMATS.flatMap((f) => f.capacities.map((c) => c.height)),
 );
-
-function fmt(n: number) {
-  return String(n).replace(".", ",");
-}
 
 function SpecRow({ label, value }: { label: string; value: string }) {
   return (
@@ -165,6 +131,8 @@ function SpecRow({ label, value }: { label: string; value: string }) {
 }
 
 export function FormatExplorer() {
+  const { t, num: fmt } = useI18n();
+  const ex = t.explorer;
   const initialFormat = FORMATS[0];
   const [formatId, setFormatId] = useState(initialFormat?.id ?? "dorica");
   const [variant, setVariant] = useState<VariantId>("classique");
@@ -176,6 +144,9 @@ export function FormatExplorer() {
     format.capacities[Math.min(capIndex, format.capacities.length - 1)] ??
     format.capacities[0];
   if (!capacity) return null;
+  const copy = ex.formats[format.id];
+  const variantName = (id: VariantId) => t.gamme.items[id].name;
+  const extraText = (e: Extra) => fill(ex.extras[e.kind], { a: fmt(e.a), b: fmt(e.b ?? e.a) });
 
   // Échelle physique commune : seule la HAUTEUR pilote la taille affichée.
   // La largeur suit le ratio intrinsèque du PNG — aucun étirement possible.
@@ -185,11 +156,11 @@ export function FormatExplorer() {
   const productHeightPx = (capacity.height / MAX_HEIGHT) * usable;
   const box = packBox(format.id, variant, productHeightPx);
 
-  const bodyLabel = format.bodyShape === "round" ? "Corps" : "Section";
+  const bodyLabel = format.bodyShape === "round" ? ex.bodyRound : ex.bodySection;
   const bodyValue =
     format.bodyShape === "round"
-      ? `Ø ${fmt(capacity.width)} mm`
-      : `${fmt(capacity.width)} × ${fmt(capacity.width)} mm`;
+      ? `Ø ${fmt(capacity.width)} ${ex.mm}`
+      : `${fmt(capacity.width)} × ${fmt(capacity.width)} ${ex.mm}`;
 
   const chip = (active: boolean) =>
     `px-4 py-2 text-[11px] uppercase tracking-[0.2em] border transition-colors duration-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold ${
@@ -203,7 +174,7 @@ export function FormatExplorer() {
       {/* Étape 1 — étiquette */}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-3">
         <span className="mr-2 text-[10px] uppercase tracking-[0.3em] text-sand/35">
-          01 — Étiquette
+          01 — {ex.stepLabel}
         </span>
         {VARIANTS.map((v) => (
           <button
@@ -214,7 +185,7 @@ export function FormatExplorer() {
             className={`${chip(v.id === variant)} flex items-center gap-3`}
           >
             <span aria-hidden className={`h-3 w-3 rounded-full ring-1 ${v.swatch}`} />
-            {v.name}
+            {variantName(v.id)}
           </button>
         ))}
       </div>
@@ -223,7 +194,7 @@ export function FormatExplorer() {
         {/* Étape 2 — format */}
         <div className="min-w-0 lg:col-span-3">
           <span className="mb-5 block text-[10px] uppercase tracking-[0.3em] text-sand/35">
-            02 — Format
+            02 — {ex.stepFormat}
           </span>
           <ul className="flex flex-col border-t border-white/8">
             {FORMATS.map((f) => {
@@ -246,10 +217,10 @@ export function FormatExplorer() {
                         active ? "text-gold" : "text-sand/85 group-hover:text-sand"
                       }`}
                     >
-                      {f.name}
+                      {ex.formats[f.id].name}
                     </span>
                     <span className="mt-1 block text-[10px] uppercase tracking-[0.2em] text-sand/35">
-                      {f.material} · {f.capacities.length} contenances
+                      {ex.formats[f.id].material} · {fill(ex.capacityCount, { n: f.capacities.length })}
                     </span>
                   </button>
                 </li>
@@ -280,7 +251,7 @@ export function FormatExplorer() {
               className="absolute left-4 text-[9px] uppercase tracking-[0.2em] text-sand/35 transition-all duration-700"
               style={{ bottom: `${FLOOR + productHeightPx + 6}px` }}
             >
-              {fmt(capacity.height)} mm
+              {fmt(capacity.height)} {ex.mm}
             </span>
 
             <div
@@ -290,9 +261,7 @@ export function FormatExplorer() {
               <img
                 key={`${format.id}-${variant}`}
                 src={format.images[variant]}
-                alt={`Emballage CARTHÉA ${format.name} ${capacity.label} — étiquette ${
-                  VARIANTS.find((v) => v.id === variant)?.name ?? variant
-                }`}
+                alt={fill(ex.alt, { format: copy.name, capacity: capacity.label, label: variantName(variant) })}
                 loading="lazy"
                 decoding="async"
                 style={{
@@ -312,13 +281,13 @@ export function FormatExplorer() {
 
         {/* Étapes 3 & 4 — contenance et dimensions */}
         <div className="min-w-0 lg:col-span-4">
-          <h3 className="font-serif text-3xl text-sand sm:text-4xl">{format.name}</h3>
+          <h3 className="font-serif text-3xl text-sand sm:text-4xl">{copy.name}</h3>
           <p className="mt-4 max-w-[44ch] text-sm leading-relaxed text-sand/55">
-            {format.desc}
+            {copy.desc}
           </p>
 
           <span className="mt-10 mb-4 block text-[10px] uppercase tracking-[0.3em] text-sand/35">
-            03 — Contenance
+            03 — {ex.stepCapacity}
           </span>
           <div className="flex flex-wrap gap-2">
             {format.capacities.map((c, i) => (
@@ -335,24 +304,24 @@ export function FormatExplorer() {
           </div>
 
           <span className="mt-10 mb-2 block text-[10px] uppercase tracking-[0.3em] text-sand/35">
-            04 — Dimensions
+            04 — {ex.stepDimensions}
           </span>
           <dl className="divide-y divide-white/6 border-y border-white/8">
-            <SpecRow label="Hauteur totale" value={`${fmt(capacity.height)} mm`} />
+            <SpecRow label={ex.height} value={`${fmt(capacity.height)} ${ex.mm}`} />
             <SpecRow label={bodyLabel} value={bodyValue} />
             {capacity.brimful ? (
-              <SpecRow label="Capacité ras bord" value={`${capacity.brimful} ml`} />
+              <SpecRow label={ex.brimful} value={`${capacity.brimful} ${ex.ml}`} />
             ) : null}
             {capacity.weight ? (
-              <SpecRow label="Poids à vide" value={`≈ ${capacity.weight} g`} />
+              <SpecRow label={ex.weight} value={`≈ ${capacity.weight} ${ex.g}`} />
             ) : null}
           </dl>
 
           <div className="mt-6 space-y-2 text-xs leading-relaxed text-sand/45">
-            <p>{format.neck}</p>
-            {capacity.extra ? <p>{capacity.extra}</p> : null}
+            <p>{copy.neck}</p>
+            {capacity.extra ? <p>{extraText(capacity.extra)}</p> : null}
             <p className="pt-3 text-[10px] uppercase tracking-[0.18em] text-sand/30">
-              {format.use} — {format.source}
+              {copy.use} — {copy.source}
             </p>
           </div>
         </div>
