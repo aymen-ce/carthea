@@ -7,7 +7,9 @@ import marascaPremium from "../assets/pack-marasca-premium.png";
 import marascaBio from "../assets/pack-marasca-bio.png";
 import bottle410 from "../assets/carthea-classique-marasca-250ml-410.webp";
 import bottle240 from "../assets/carthea-classique-marasca-250ml-240.webp";
+import bioLabel3D from "../assets/carthea-bio-marasca-250ml-label-3d.webp";
 import { BottleShowcase } from "../components/BottleShowcase";
+import { BottleTurntable3D } from "../components/BottleTurntable3D";
 import { FormatExplorer } from "../components/FormatExplorer";
 import { Reveal } from "../components/Reveal";
 import { SectionLabel } from "../components/SectionLabel";
@@ -147,6 +149,12 @@ function Index() {
                         <BottleShowcase
                           src={bottle410}
                           srcSmall={bottle240}
+                          alt={t.gamme.alt.replace("{name}", v.name)}
+                        />
+                      ) : key === "bio" ? (
+                        <BottleTurntable3D
+                          variant="bio"
+                          labelSrc={bioLabel3D}
                           alt={t.gamme.alt.replace("{name}", v.name)}
                         />
                       ) : (
