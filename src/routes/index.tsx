@@ -5,6 +5,9 @@ import trioVerger from "../assets/carthea-trio-verger.jpg.asset.json";
 import marascaClassique from "../assets/pack-marasca-classique.png";
 import marascaPremium from "../assets/pack-marasca-premium.png";
 import marascaBio from "../assets/pack-marasca-bio.png";
+import bottle410 from "../assets/carthea-classique-marasca-250ml-410.webp";
+import bottle240 from "../assets/carthea-classique-marasca-250ml-240.webp";
+import { BottleShowcase } from "../components/BottleShowcase";
 import { FormatExplorer } from "../components/FormatExplorer";
 import { Reveal } from "../components/Reveal";
 import { SectionLabel } from "../components/SectionLabel";
@@ -140,13 +143,21 @@ function Index() {
                     className="flex flex-col border-b border-white/8 px-0 py-14 md:border-b-0 md:px-10 md:first:pl-0 md:last:pr-0 md:[&+article]:border-l md:[&+article]:border-white/8"
                   >
                     <div className="flex h-[19rem] items-end justify-center sm:h-[22rem]">
-                      <img
-                        src={GAMME_IMAGES[key]}
-                        alt={t.gamme.alt.replace("{name}", v.name)}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-full w-auto max-w-full object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
-                      />
+                      {key === "classique" ? (
+                        <BottleShowcase
+                          src={bottle410}
+                          srcSmall={bottle240}
+                          alt={t.gamme.alt.replace("{name}", v.name)}
+                        />
+                      ) : (
+                        <img
+                          src={GAMME_IMAGES[key]}
+                          alt={t.gamme.alt.replace("{name}", v.name)}
+                          loading="lazy"
+                          decoding="async"
+                          className="h-full w-auto max-w-full object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
+                        />
+                      )}
                     </div>
                     <h3 className="mt-12 font-serif text-3xl text-sand">{v.name}</h3>
                     <span className="mt-2 text-[10px] uppercase tracking-[0.25em] text-gold/80">
