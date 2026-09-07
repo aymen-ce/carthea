@@ -90,7 +90,7 @@ export function BottleShowcase({
     }
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry?.isIntersecting) {
           setRevealed(true);
           io.disconnect();
         }
