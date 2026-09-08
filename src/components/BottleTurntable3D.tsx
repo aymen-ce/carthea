@@ -88,13 +88,13 @@ function buildLUT() {
   const raw = new Float64Array(n);
   for (let k = 0; k < n; k++) {
     const h = k * step;
-    let v = PROFILE[PROFILE.length - 1][1];
-    if (h <= PROFILE[0][0]) v = PROFILE[0][1];
+    let v = PROFILE[PROFILE.length - 1]![1];
+    if (h <= PROFILE[0]![0]) v = PROFILE[0]![1];
     else {
       for (let i = 1; i < PROFILE.length; i++) {
-        if (h <= PROFILE[i][0]) {
-          const [h0, w0] = PROFILE[i - 1];
-          const [h1, w1] = PROFILE[i];
+        if (h <= PROFILE[i]![0]) {
+          const [h0, w0] = PROFILE[i - 1]!;
+          const [h1, w1] = PROFILE[i]!;
           v = w0 + ((w1 - w0) * (h - h0)) / (h1 - h0);
           break;
         }
@@ -114,7 +114,7 @@ function buildLUT() {
   const out = new Float64Array(n);
   for (let k = 0; k < n; k++) {
     let a = 0;
-    for (let i = -rad; i <= rad; i++) a += raw[Math.min(n - 1, Math.max(0, k + i))] * ker[i + rad];
+    for (let i = -rad; i <= rad; i++) a += raw[Math.min(n - 1, Math.max(0, k + i))]! * ker[i + rad]!;
     out[k] = a / sum;
   }
   return { step, n, out };
@@ -125,7 +125,7 @@ function halfWidthAt(h: number) {
   const x = Math.min(LUT.n - 1.001, Math.max(0, h / LUT.step));
   const k = Math.floor(x);
   const t = x - k;
-  return LUT.out[k] * (1 - t) + LUT.out[Math.min(LUT.n - 1, k + 1)] * t;
+  return LUT.out[k]! * (1 - t) + LUT.out[Math.min(LUT.n - 1, k + 1)]! * t;
 }
 // carré-itude : 1 = carré arrondi du corps, 0 = cercle du col
 function rcAt(h: number) {
@@ -167,7 +167,9 @@ function sectionPath(a: number, rc: number) {
   let L = 0;
   const cum = [0];
   for (let i = 1; i < pts.length; i++) {
-    L += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
+    const pi = pts[i]!;
+    const pPrev = pts[i - 1]!;
+    L += Math.hypot(pi[0] - pPrev[0], pi[1] - pPrev[1]);
     cum.push(L);
   }
   return { pts, cum, per: L };
@@ -177,10 +179,10 @@ function resample(path: ReturnType<typeof sectionPath>, N: number, s0 = 0) {
   for (let i = 0; i < N; i++) {
     const s = (path.per * (i / N) + s0) % path.per;
     let k = 1;
-    while (k < path.cum.length - 1 && path.cum[k] < s) k++;
-    const t = (s - path.cum[k - 1]) / (path.cum[k] - path.cum[k - 1] || 1);
-    const p0 = path.pts[k - 1];
-    const p1 = path.pts[k];
+    while (k < path.cum.length - 1 && path.cum[k]! < s) k++;
+    const t = (s - path.cum[k - 1]!) / (path.cum[k]! - path.cum[k - 1]! || 1);
+    const p0 = path.pts[k - 1]!;
+    const p1 = path.pts[k]!;
     out.push([p0[0] + (p1[0] - p0[0]) * t, p0[1] + (p1[1] - p0[1]) * t, s]);
   }
   return { pt: out, per: path.per };
@@ -203,9 +205,9 @@ function buildShell(h0: number, h1: number, rows: number, offset: number, uvMode
     return { h, r };
   });
   for (let j = 0; j < rings.length; j++) {
-    const { h, r } = rings[j];
+    const { h, r } = rings[j]!;
     for (let i = 0; i <= NSEG; i++) {
-      const p = r.pt[i % NSEG];
+      const p = r.pt[i % NSEG]!;
       pos.push(p[0], h, p[1] as number);
       let s = p[2] as number;
       if (s > r.per / 2) s -= r.per;
@@ -385,8 +387,8 @@ export function BottleTurntable3D({ variant, labelSrc, alt, className = "" }: Bo
     scene.add(bottle);
     const bodyGeo = buildShell(0, H_NECK_TOP, 300, 0, "plain");
     (function (g) {
-      const uvAttr = g.attributes.uv as THREE.BufferAttribute;
-      const posAttr = g.attributes.position as THREE.BufferAttribute;
+      const uvAttr = g.attributes["uv"] as THREE.BufferAttribute;
+      const posAttr = g.attributes["position"] as THREE.BufferAttribute;
       for (let i = 0; i < uvAttr.count; i++) uvAttr.setY(i, posAttr.getY(i) / H_NECK_TOP);
     })(bodyGeo);
     const body = new THREE.Mesh(bodyGeo, glassMat);
@@ -400,7 +402,7 @@ export function BottleTurntable3D({ variant, labelSrc, alt, className = "" }: Bo
       const uv = [0.5, 0.02];
       const idx: number[] = [];
       for (let i = 0; i <= NSEG; i++) {
-        const p = r.pt[i % NSEG];
+        const p = r.pt[i % NSEG]!;
         pos.push(p[0], 0, p[1] as number);
         uv.push(0.5, 0.02);
       }
@@ -476,12 +478,15 @@ export function BottleTurntable3D({ variant, labelSrc, alt, className = "" }: Bo
       const labelMat = new THREE.MeshStandardMaterial({ map: labelTex, roughness: 0.66, metalness: 0.0, envMapIntensity: 0.7 });
       const labelGeo = buildShell(LAB_BOT, LAB_TOP, 120, 0.16, "label");
       (function trim(g) {
-        const uvAttr = g.attributes.uv as THREE.BufferAttribute;
+        const uvAttr = g.attributes["uv"] as THREE.BufferAttribute;
         const ix = g.index!.array as Uint32Array | Uint16Array;
         const keep: number[] = [];
         for (let i = 0; i < ix.length; i += 3) {
-          const us = [uvAttr.getX(ix[i]), uvAttr.getX(ix[i + 1]), uvAttr.getX(ix[i + 2])];
-          if (Math.min(...us) >= -0.0005 && Math.max(...us) <= 1.0005) keep.push(ix[i], ix[i + 1], ix[i + 2]);
+          const ia = ix[i]!;
+          const ib = ix[i + 1]!;
+          const ic = ix[i + 2]!;
+          const us = [uvAttr.getX(ia), uvAttr.getX(ib), uvAttr.getX(ic)];
+          if (Math.min(...us) >= -0.0005 && Math.max(...us) <= 1.0005) keep.push(ia, ib, ic);
         }
         g.setIndex(keep);
       })(labelGeo);
