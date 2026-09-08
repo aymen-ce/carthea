@@ -308,6 +308,27 @@ const en: Dict = {
     title: "From tasting size to professional volume.",
     lead: "Every expression in the CARTHÉA range is available in a complete selection of packaging formats, designed for the table, family kitchens and the needs of foodservice and the food industry.",
   },
+  b2b: {
+    label: "Trade",
+    title: "Distributors, importers and private label.",
+    lead: "CARTHÉA works with food industry professionals across Europe and beyond: distribution, fine food retail, foodservice and private label production.",
+    items: [
+      {
+        title: "Distribution & import",
+        desc: "Three ranges — Classique, Premium and Bio — across five packaging formats and six sizes, from 250 ml to 5 litres.",
+      },
+      {
+        title: "Private label",
+        desc: "Your brand on our packaging: we handle the oil, the filling and the labelling in your own colours.",
+      },
+      {
+        title: "Documents & samples",
+        desc: "Technical sheets per format, labelling specifications and samples available on request.",
+      },
+    ],
+    note: "MOQ, Incoterms and lead times provided on request.",
+    cta: "Trade enquiry",
+  },
   explorer: {
     stepLabel: "Label",
     stepFormat: "Format",
