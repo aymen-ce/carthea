@@ -199,6 +199,57 @@ function Index() {
           </div>
         </section>
 
+        {/* Professionnels */}
+        <section id="b2b" className="border-t border-white/5 px-6 py-24 lg:px-12 lg:py-36">
+          <div className="mx-auto max-w-[88rem]">
+            <Reveal className="grid grid-cols-12 gap-y-8 lg:gap-x-16">
+              <div className="col-span-12 lg:col-span-5">
+                <SectionLabel>{t.b2b.label}</SectionLabel>
+                <h2 className="mt-8 font-serif text-[clamp(2rem,4.5vw,3.25rem)] font-medium leading-[1.1] text-balance">
+                  {t.b2b.title}
+                </h2>
+              </div>
+              <div className="col-span-12 lg:col-span-5 lg:col-start-8 lg:pt-6">
+                <p className="max-w-[48ch] text-[15px] leading-[1.85] text-pretty text-sand/55">
+                  {t.b2b.lead}
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="mt-20 grid grid-cols-1 border-t border-white/8 md:grid-cols-3">
+              {t.b2b.items.map((item, i) => (
+                <Reveal
+                  key={item.title}
+                  as="article"
+                  delay={i * 110}
+                  className="flex flex-col border-b border-white/8 py-12 md:border-b-0 md:px-10 md:first:pl-0 md:last:pr-0 md:[&+article]:border-l md:[&+article]:border-white/8"
+                >
+                  <span className="font-serif text-sm text-gold/60">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-6 font-serif text-2xl text-sand">{item.title}</h3>
+                  <p className="mt-4 max-w-[38ch] text-sm leading-relaxed text-pretty text-sand/55">
+                    {item.desc}
+                  </p>
+                </Reveal>
+              ))}
+            </div>
+
+            <Reveal
+              delay={120}
+              className="mt-16 flex flex-col gap-6 border-t border-white/8 pt-10 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <p className="text-[11px] uppercase tracking-[0.2em] text-sand/35">{t.b2b.note}</p>
+              <a
+                href="mailto:trade@carthea.tn"
+                className="inline-flex items-center justify-center border border-gold/60 px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-gold transition-colors duration-500 hover:bg-gold hover:text-obsidian sm:w-auto"
+              >
+                {t.b2b.cta}
+              </a>
+            </Reveal>
+          </div>
+        </section>
+
         {/* Millésime */}
         <section id="collection" className="border-t border-white/5 px-6 py-24 lg:px-12 lg:py-36">
           <div className="mx-auto max-w-[88rem]">
