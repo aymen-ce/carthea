@@ -53,11 +53,7 @@ export function packMetric(formatId: string, variantId: string): PackMetric {
  * Calcule la géométrie d'affichage d'un visuel pour une hauteur produit donnée.
  * Le ratio intrinsèque du PNG est toujours conservé (aucun étirement).
  */
-export function packBox(
-  formatId: string,
-  variantId: string,
-  productHeightPx: number,
-) {
+export function packBox(formatId: string, variantId: string, productHeightPx: number) {
   const m = packMetric(formatId, variantId);
   const imgHeight = productHeightPx / m.fh;
   return {

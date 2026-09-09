@@ -9,10 +9,7 @@ export default defineTool({
   description:
     "Get the full technical sheet of one CARTHÉA packaging format: every capacity with real height, body width, empty weight, brimful volume and neck finish (in mm / g / ml).",
   inputSchema: {
-    format_id: z
-      .string()
-      .min(1)
-      .describe("Packaging id: dorica, marasca, biolio, bidon or pet."),
+    format_id: z.string().min(1).describe("Packaging id: dorica, marasca, biolio, bidon or pet."),
   },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: ({ format_id }) => {

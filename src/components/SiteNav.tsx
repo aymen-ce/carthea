@@ -46,8 +46,7 @@ export function SiteNav({ variant = "home" }: { variant?: "home" | "page" }) {
   const linkClass =
     "relative text-[11px] uppercase tracking-[0.28em] text-sand/70 transition-colors duration-300 hover:text-gold focus-visible:text-gold after:absolute after:start-0 after:-bottom-1.5 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-500 hover:after:w-full";
 
-  const href = (item: NavItem) =>
-    variant === "home" ? `#${item.hash}` : `/#${item.hash}`;
+  const href = (item: NavItem) => (variant === "home" ? `#${item.hash}` : `/#${item.hash}`);
 
   return (
     <header
@@ -57,6 +56,14 @@ export function SiteNav({ variant = "home" }: { variant?: "home" | "page" }) {
           : "bg-transparent border-b border-transparent"
       }`}
     >
+      {/* Accès direct au contenu : premier arrêt au clavier, invisible sinon. */}
+      <a
+        href="#contenu"
+        className="absolute start-4 top-4 z-10 -translate-y-24 border border-gold/60 bg-obsidian px-5 py-3 text-[11px] uppercase tracking-[0.28em] text-gold transition-transform duration-300 focus:translate-y-0"
+      >
+        {t.nav.skip}
+      </a>
+
       <div className="mx-auto flex h-20 max-w-[88rem] items-center justify-between gap-6 px-6 lg:px-12">
         <Link
           to="/"
