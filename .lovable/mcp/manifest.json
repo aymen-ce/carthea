@@ -56,7 +56,7 @@
       {
         "name": "list_label_variants",
         "title": "List label variants",
-        "description": "List the three CARTHÉA label variants (Classique, Premium, 100% Bio) with their colour palette and certifications.",
+        "description": "List the three CARTHÉA label variants (Classique, Premium, Bio) with their colour palette and certifications.",
         "annotations": {
           "readOnlyHint": true,
           "idempotentHint": true,

@@ -4,9 +4,9 @@
 export type VariantId = "classique" | "premium" | "bio";
 
 export const VARIANTS: { id: VariantId; name: string; palette: string; certifications: string[] }[] = [
-  { id: "classique", name: "Classique", palette: "Noir & Or", certifications: ["Kosher", "Halal"] },
-  { id: "premium", name: "Premium", palette: "Vert & Or", certifications: ["Kosher", "Halal"] },
-  { id: "bio", name: "100% Bio", palette: "Blanc & Vert", certifications: ["Ecocert", "Kosher", "Halal"] },
+  { id: "classique", name: "Classique", palette: "Noir & Or", certifications: [] },
+  { id: "premium", name: "Premium", palette: "Vert & Or", certifications: [] },
+  { id: "bio", name: "Bio", palette: "Blanc & Vert", certifications: ["Ecocert", "JAS"] },
 ];
 
 export type Capacity = {
@@ -116,7 +116,7 @@ export const BRAND = {
   producer: "SARAYA NATURAL PRODUCTS",
   origin: "Djebel Bargou, Siliana — Tunisie",
   description:
-    "CARTHÉA est une huile d'olive vierge extra monocultivar issue des vergers du Djebel Bargou, en Tunisie. Trois expressions : Classique, Premium et 100% Bio.",
+    "CARTHÉA est une huile d'olive vierge extra monocultivar issue des vergers du Djebel Bargou, en Tunisie. Trois expressions : Classique, Premium et Bio.",
   website: "https://carthea.lovable.app",
 };
 

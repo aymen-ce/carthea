@@ -10,6 +10,7 @@ const ITEMS: NavItem[] = [
   { key: "heritage", hash: "heritage" },
   { key: "gamme", hash: "gamme" },
   { key: "formats", hash: "formats" },
+  { key: "b2b", hash: "b2b" },
   { key: "collection", hash: "collection" },
   { key: "contact", to: "/contact" },
 ];
