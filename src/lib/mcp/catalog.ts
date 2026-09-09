@@ -113,7 +113,6 @@ export const FORMATS: Format[] = [
 export const BRAND = {
   name: "CARTHÉA",
   tagline: "Huile d'olive vierge extra de Tunisie",
-  producer: "SARAYA NATURAL PRODUCTS",
   origin: "Djebel Bargou, Siliana — Tunisie",
   description:
     "CARTHÉA est une huile d'olive vierge extra monocultivar issue des vergers du Djebel Bargou, en Tunisie. Trois expressions : Classique, Premium et Bio.",

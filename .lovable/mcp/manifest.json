@@ -72,7 +72,7 @@
       {
         "name": "get_brand_info",
         "title": "Get brand info",
-        "description": "Get public information about the CARTHÉA brand: producer, origin of the groves, positioning and website.",
+        "description": "Get public information about the CARTHÉA brand: origin of the groves, positioning and website.",
         "annotations": {
           "readOnlyHint": true,
           "idempotentHint": true,
