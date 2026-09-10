@@ -6,7 +6,7 @@ export default defineTool({
   name: "list_label_variants",
   title: "List label variants",
   description:
-    "List the three CARTHÉA label variants (Classique, Premium, Bio) with their colour palette and certifications.",
+    "List the CARTHÉA label variants (Classique, Premium) with their colour palette and certifications.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: () => ({

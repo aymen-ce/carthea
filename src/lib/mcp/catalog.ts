@@ -1,7 +1,7 @@
 // Public CARTHÉA catalogue data shared by the MCP tools.
 // Mirrors the packaging data shown on the website (src/components/FormatExplorer.tsx).
 
-export type VariantId = "classique" | "premium" | "bio";
+export type VariantId = "classique" | "premium";
 
 export const VARIANTS: {
   id: VariantId;
@@ -11,7 +11,6 @@ export const VARIANTS: {
 }[] = [
   { id: "classique", name: "Classique", palette: "Noir & Or", certifications: [] },
   { id: "premium", name: "Premium", palette: "Vert & Or", certifications: [] },
-  { id: "bio", name: "Bio", palette: "Blanc & Vert", certifications: ["Ecocert", "JAS"] },
 ];
 
 export type Capacity = {
@@ -105,8 +104,8 @@ export const FORMATS: Format[] = [
     id: "biolio",
     name: "Bouteille Biolio DOP/T",
     material: "Verre",
-    desc: "Forme moderne et distincte, adaptée aux gammes bio et coffrets découverte.",
-    use: "Bio · Découverte · Échantillon · Cadeau",
+    desc: "Forme moderne et distincte, adaptée aux coffrets découverte et aux échantillons.",
+    use: "Découverte · Échantillon · Cadeau",
     source: "Plans Vetreria Etrusca (Montelupo F.no, Italie)",
     neck: "Imboccatura BG 21 · Ø bague 30,4 mm · passage min. 16 mm",
     capacities: [
@@ -192,7 +191,7 @@ export const BRAND = {
   tagline: "Huile d'olive vierge extra de Tunisie",
   origin: "Djebel Bargou, Siliana — Tunisie",
   description:
-    "CARTHÉA est une huile d'olive vierge extra monocultivar issue des vergers du Djebel Bargou, en Tunisie. Trois expressions : Classique, Premium et Bio.",
+    "CARTHÉA est une huile d'olive vierge extra monocultivar issue des vergers du Djebel Bargou, en Tunisie. Deux expressions : Classique et Premium.",
   website: "https://carthea.lovable.app",
 };
 

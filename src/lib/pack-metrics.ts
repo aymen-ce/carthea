@@ -17,19 +17,14 @@ export type PackMetric = {
 const raw: Record<string, { w: number; h: number; y0: number; y1: number }> = {
   "dorica-classique": { w: 260, h: 880, y0: 0, y1: 880 },
   "dorica-premium": { w: 250, h: 909, y0: 0, y1: 909 },
-  "dorica-bio": { w: 279, h: 904, y0: 0, y1: 904 },
   "marasca-classique": { w: 248, h: 879, y0: 0, y1: 879 },
   "marasca-premium": { w: 248, h: 907, y0: 0, y1: 907 },
-  "marasca-bio": { w: 253, h: 903, y0: 0, y1: 903 },
   "biolio-classique": { w: 768, h: 1024, y0: 74, y1: 971 },
   "biolio-premium": { w: 768, h: 1024, y0: 92, y1: 940 },
-  "biolio-bio": { w: 768, h: 1024, y0: 125, y1: 861 },
   "bidon-classique": { w: 768, h: 1376, y0: 0, y1: 1376 },
   "bidon-premium": { w: 835, h: 1264, y0: 0, y1: 1264 },
-  "bidon-bio": { w: 768, h: 1376, y0: 0, y1: 1376 },
   "pet-classique": { w: 768, h: 1024, y0: 111, y1: 910 },
   "pet-premium": { w: 768, h: 1024, y0: 80, y1: 941 },
-  "pet-bio": { w: 768, h: 1024, y0: 65, y1: 928 },
 };
 
 const FALLBACK: PackMetric = { ratio: 0.3, fh: 1, fBottom: 0 };

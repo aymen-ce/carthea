@@ -56,7 +56,7 @@ const fr = {
     title: ["L'or liquide du soleil ", "tunisien", "."] as [string, string, string],
     lead: "CARTHÉA capture l'âme de l'antique Carthage. Une huile d'olive vierge extra monovariétale, récoltée dans des vergers millénaires.",
     cta: "Découvrir le millésime",
-    alt: "Les trois bouteilles CARTHÉA — Classique, Premium et Bio, huile d'olive vierge extra",
+    alt: "Les bouteilles CARTHÉA, huile d'olive vierge extra de Tunisie",
   },
   heritage: {
     label: "Notre Héritage",
@@ -67,7 +67,7 @@ const fr = {
   },
   gamme: {
     label: "La Gamme",
-    title: "Trois expressions, un même terroir.",
+    title: "Deux expressions, un même terroir.",
     alt: "Bouteille Marasca CARTHÉA — étiquette {name}",
     items: {
       classique: {
@@ -81,12 +81,6 @@ const fr = {
         palette: "Vert & Or",
         desc: "Première pression à froid sélectionnée. Fruité vert intense, amertume noble, finale poivrée.",
         labels: "Produit de Tunisie",
-      },
-      bio: {
-        name: "Bio",
-        palette: "Blanc & Vert",
-        desc: "Issue de l'agriculture biologique certifiée Ecocert & JAS. Pureté végétale, notes d'herbe fraîche.",
-        labels: "Agriculture biologique certifiée Ecocert & JAS · Produit de Tunisie",
       },
     },
   },
@@ -102,7 +96,7 @@ const fr = {
     items: [
       {
         title: "Distribution & import",
-        desc: "Trois gammes — Classique, Premium et Bio — déclinées en cinq conditionnements et six contenances, de 250 ml à 5 litres.",
+        desc: "Deux gammes — Classique et Premium — déclinées en cinq conditionnements et six contenances, de 250 ml à 5 litres.",
       },
       {
         title: "Marque de distributeur",
@@ -157,8 +151,8 @@ const fr = {
       biolio: {
         name: "Bouteille Biolio DOP/T",
         material: "Verre",
-        desc: "Forme moderne et distincte, parfaitement adaptée aux gammes bio et aux coffrets découverte. Le format 100 ml est idéal pour les échantillons.",
-        use: "Bio · Découverte · Échantillon · Cadeau",
+        desc: "Forme moderne et distincte, parfaitement adaptée aux coffrets découverte. Le format 100 ml est idéal pour les échantillons.",
+        use: "Découverte · Échantillon · Cadeau",
         source: "Plans Vetreria Etrusca (Montelupo F.no, Italie)",
         neck: "Imboccatura BG 21 · Ø bague 30,4 mm · passage min. 16 mm",
       },
@@ -271,7 +265,7 @@ const en: Dict = {
     title: ["Liquid gold from the ", "Tunisian", " sun."],
     lead: "CARTHÉA captures the soul of ancient Carthage. A single-varietal extra virgin olive oil, harvested from millennia-old groves.",
     cta: "Discover the vintage",
-    alt: "The three CARTHÉA bottles — Classique, Premium and Bio, extra virgin olive oil",
+    alt: "The CARTHÉA bottles, extra virgin olive oil from Tunisia",
   },
   heritage: {
     label: "Our Heritage",
@@ -282,7 +276,7 @@ const en: Dict = {
   },
   gamme: {
     label: "The Range",
-    title: "Three expressions, one terroir.",
+    title: "Two expressions, one terroir.",
     alt: "CARTHÉA Marasca bottle — {name} label",
     items: {
       classique: {
@@ -296,12 +290,6 @@ const en: Dict = {
         palette: "Green & Gold",
         desc: "A selected first cold pressing. Intense green fruitiness, noble bitterness and a peppery finish.",
         labels: "Product of Tunisia",
-      },
-      bio: {
-        name: "Bio",
-        palette: "White & Green",
-        desc: "From Ecocert & JAS certified organic farming. Vegetal purity with notes of fresh-cut grass.",
-        labels: "Certified organic — Ecocert & JAS · Product of Tunisia",
       },
     },
   },
@@ -317,7 +305,7 @@ const en: Dict = {
     items: [
       {
         title: "Distribution & import",
-        desc: "Three ranges — Classique, Premium and Bio — across five packaging formats and six sizes, from 250 ml to 5 litres.",
+        desc: "Two ranges — Classique and Premium — across five packaging formats and six sizes, from 250 ml to 5 litres.",
       },
       {
         title: "Private label",
@@ -484,7 +472,7 @@ const ar: Dict = {
     title: ["الذهب السائل من شمس ", "تونس", "."],
     lead: "تلتقط CARTHÉA روح قرطاج العريقة. زيت زيتون بكر ممتاز أحادي الصنف، يُقطف من بساتين عمرها آلاف السنين.",
     cta: "اكتشف المحصول",
-    alt: "زجاجات CARTHÉA الثلاث — Classique وPremium وBio، زيت زيتون بكر ممتاز",
+    alt: "زجاجات CARTHÉA، زيت زيتون بكر ممتاز من تونس",
   },
   heritage: {
     label: "إرثنا",
@@ -495,7 +483,7 @@ const ar: Dict = {
   },
   gamme: {
     label: "التشكيلة",
-    title: "ثلاثة تعابير، أرضٌ واحدة.",
+    title: "تعبيران، أرضٌ واحدة.",
     alt: "زجاجة ماراسكا CARTHÉA — ملصق {name}",
     items: {
       classique: {
@@ -509,12 +497,6 @@ const ar: Dict = {
         palette: "أخضر وذهبي",
         desc: "عصرة أولى على البارد منتقاة. فاكهية خضراء مكثّفة، مرارة نبيلة وقفلة فلفلية.",
         labels: "منتج تونسي",
-      },
-      bio: {
-        name: "Bio",
-        palette: "أبيض وأخضر",
-        desc: "من زراعة عضوية معتمدة من Ecocert وJAS. نقاء نباتي مع نفحات العشب الطازج.",
-        labels: "زراعة عضوية معتمدة Ecocert وJAS · منتج تونسي",
       },
     },
   },
@@ -530,7 +512,7 @@ const ar: Dict = {
     items: [
       {
         title: "التوزيع والاستيراد",
-        desc: "ثلاث تشكيلات — Classique وPremium وBio — في خمس عبوات وستّ سعات، من 250 مل إلى 5 لترات.",
+        desc: "تشكيلتان — Classique وPremium — في خمس عبوات وستّ سعات، من 250 مل إلى 5 لترات.",
       },
       {
         title: "العلامة الخاصة",
