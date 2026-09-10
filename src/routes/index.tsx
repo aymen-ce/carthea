@@ -4,7 +4,6 @@ import trioStudio from "../assets/carthea-trio-studio.jpg.asset.json";
 import trioVerger from "../assets/carthea-trio-verger.jpg.asset.json";
 import bottleClassique from "../assets/carthea-classique-marasca-250ml-410.webp";
 import bottlePremium from "../assets/carthea-premium-marasca-250ml-410.webp";
-import bottleBio from "../assets/carthea-bio-marasca-250ml-410.webp";
 import { BottleShowcase } from "../components/BottleShowcase";
 import { FormatExplorer } from "../components/FormatExplorer";
 import { Reveal } from "../components/Reveal";
@@ -47,7 +46,6 @@ export const Route = createFileRoute("/")({
 const GAMME_IMAGES = {
   classique: bottleClassique,
   premium: bottlePremium,
-  bio: bottleBio,
 } as const;
 
 function Index() {
@@ -134,7 +132,7 @@ function Index() {
               </h2>
             </Reveal>
 
-            <div className="mt-20 grid grid-cols-1 border-t border-white/8 md:grid-cols-3">
+            <div className="mt-20 grid grid-cols-1 border-t border-white/8 md:grid-cols-2">
               {(Object.keys(GAMME_IMAGES) as Array<keyof typeof GAMME_IMAGES>).map((key, i) => {
                 const v = t.gamme.items[key];
                 return (
@@ -144,7 +142,7 @@ function Index() {
                     delay={i * 110}
                     className="flex flex-col border-b border-white/8 px-0 py-14 md:border-b-0 md:px-10 md:first:pl-0 md:last:pr-0 md:[&+article]:border-l md:[&+article]:border-white/8"
                   >
-                    <div className="h-[20rem] sm:h-[24rem] lg:h-[28rem]">
+                    <div className="h-[22rem] sm:h-[26rem] lg:h-[32rem]">
                       <BottleShowcase
                         src={GAMME_IMAGES[key]}
                         alt={t.gamme.alt.replace("{name}", v.name)}

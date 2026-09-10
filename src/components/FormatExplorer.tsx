@@ -4,26 +4,20 @@ import { fill, useI18n } from "../lib/i18n";
 import { packBox } from "../lib/pack-metrics";
 import doricaClassique from "../assets/pack-dorica-classique.png";
 import doricaPremium from "../assets/pack-dorica-premium.png";
-import doricaBio from "../assets/pack-dorica-bio.png";
 import marascaClassique from "../assets/pack-marasca-classique.png";
 import marascaPremium from "../assets/pack-marasca-premium.png";
-import marascaBio from "../assets/pack-marasca-bio.png";
 import biolioClassique from "../assets/pack-biolio-classique.png";
 import biolioPremium from "../assets/pack-biolio-premium.png";
-import biolioBio from "../assets/pack-biolio-bio.png";
 import bidonClassique from "../assets/pack-bidon-classique.png";
 import bidonPremium from "../assets/pack-bidon-premium.png";
-import bidonBio from "../assets/pack-bidon-bio.png";
 import petClassique from "../assets/pack-pet-classique.png";
 import petPremium from "../assets/pack-pet-premium.png";
-import petBio from "../assets/pack-pet-bio.png";
 
-type VariantId = "classique" | "premium" | "bio";
+type VariantId = "classique" | "premium";
 
 const VARIANTS: { id: VariantId; swatch: string }[] = [
   { id: "classique", swatch: "bg-obsidian ring-gold/70" },
   { id: "premium", swatch: "bg-[oklch(0.28_0.06_140)] ring-gold/70" },
-  { id: "bio", swatch: "bg-sand ring-sand/50" },
 ];
 
 /** Détail complémentaire structuré (les cotes restent des nombres, jamais traduits). */
@@ -57,7 +51,7 @@ type Format = {
 const FORMATS: Format[] = [
   {
     id: "dorica",
-    images: { classique: doricaClassique, premium: doricaPremium, bio: doricaBio },
+    images: { classique: doricaClassique, premium: doricaPremium },
     bodyShape: "round",
     capacities: [
       { label: "250 ml", liters: 0.25, height: 205, width: 56.6, weight: 250 },
@@ -67,7 +61,7 @@ const FORMATS: Format[] = [
   },
   {
     id: "marasca",
-    images: { classique: marascaClassique, premium: marascaPremium, bio: marascaBio },
+    images: { classique: marascaClassique, premium: marascaPremium },
     bodyShape: "section",
     capacities: [
       {
@@ -110,7 +104,7 @@ const FORMATS: Format[] = [
   },
   {
     id: "biolio",
-    images: { classique: biolioClassique, premium: biolioPremium, bio: biolioBio },
+    images: { classique: biolioClassique, premium: biolioPremium },
     bodyShape: "round",
     capacities: [
       {
@@ -162,7 +156,7 @@ const FORMATS: Format[] = [
   },
   {
     id: "bidon",
-    images: { classique: bidonClassique, premium: bidonPremium, bio: bidonBio },
+    images: { classique: bidonClassique, premium: bidonPremium },
     bodyShape: "section",
     capacities: [
       { label: "2 L", liters: 2, height: 205, width: 95, extra: { kind: "section", a: 95, b: 95 } },
@@ -191,7 +185,7 @@ const FORMATS: Format[] = [
   },
   {
     id: "pet",
-    images: { classique: petClassique, premium: petPremium, bio: petBio },
+    images: { classique: petClassique, premium: petPremium },
     bodyShape: "round",
     capacities: [
       { label: "3 L", liters: 3, height: 290, width: 110, extra: { kind: "body", a: 110, b: 110 } },
