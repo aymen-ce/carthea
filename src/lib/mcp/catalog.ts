@@ -3,7 +3,12 @@
 
 export type VariantId = "classique" | "premium" | "bio";
 
-export const VARIANTS: { id: VariantId; name: string; palette: string; certifications: string[] }[] = [
+export const VARIANTS: {
+  id: VariantId;
+  name: string;
+  palette: string;
+  certifications: string[];
+}[] = [
   { id: "classique", name: "Classique", palette: "Noir & Or", certifications: [] },
   { id: "premium", name: "Premium", palette: "Vert & Or", certifications: [] },
   { id: "bio", name: "Bio", palette: "Blanc & Vert", certifications: ["Ecocert", "JAS"] },
@@ -58,10 +63,42 @@ export const FORMATS: Format[] = [
     source: "Plans STV (Société Tunisienne de Verreries)",
     neck: "Bague Pilferproof 31,5 STD · débouchage Ø 20,6 mm",
     capacities: [
-      { label: "250 ml", liters: 0.25, height: 211.5, width: 46.6, weight: 250, brimful: 265, extra: "Section carrée 46,6 × 46,6 mm" },
-      { label: "500 ml", liters: 0.5, height: 260, width: 57.5, weight: 390, brimful: 520, extra: "Section carrée 57,5 × 57,5 mm" },
-      { label: "750 ml", liters: 0.75, height: 274.7, width: 68, weight: 450, brimful: 775, extra: "Section carrée 68 × 68 mm" },
-      { label: "1 L", liters: 1, height: 300, width: 76.1, weight: 605, brimful: 1040, extra: "Section carrée 76,1 × 76,1 mm" },
+      {
+        label: "250 ml",
+        liters: 0.25,
+        height: 211.5,
+        width: 46.6,
+        weight: 250,
+        brimful: 265,
+        extra: "Section carrée 46,6 × 46,6 mm",
+      },
+      {
+        label: "500 ml",
+        liters: 0.5,
+        height: 260,
+        width: 57.5,
+        weight: 390,
+        brimful: 520,
+        extra: "Section carrée 57,5 × 57,5 mm",
+      },
+      {
+        label: "750 ml",
+        liters: 0.75,
+        height: 274.7,
+        width: 68,
+        weight: 450,
+        brimful: 775,
+        extra: "Section carrée 68 × 68 mm",
+      },
+      {
+        label: "1 L",
+        liters: 1,
+        height: 300,
+        width: 76.1,
+        weight: 605,
+        brimful: 1040,
+        extra: "Section carrée 76,1 × 76,1 mm",
+      },
     ],
   },
   {
@@ -73,11 +110,51 @@ export const FORMATS: Format[] = [
     source: "Plans Vetreria Etrusca (Montelupo F.no, Italie)",
     neck: "Imboccatura BG 21 · Ø bague 30,4 mm · passage min. 16 mm",
     capacities: [
-      { label: "100 ml", liters: 0.1, height: 105, width: 51.2, weight: 130, brimful: 109, extra: "Base Ø 44 mm" },
-      { label: "250 ml", liters: 0.25, height: 135, width: 68.3, weight: 250, brimful: 266, extra: "Base Ø 43,3 mm" },
-      { label: "500 ml", liters: 0.5, height: 178, width: 78, weight: 350, brimful: 515, extra: "Base Ø 48,2 mm" },
-      { label: "750 ml", liters: 0.75, height: 202, width: 89, weight: 500, brimful: 775, extra: "Base Ø 58,2 mm" },
-      { label: "1 L", liters: 1, height: 241, width: 91, weight: 600, brimful: 1030, extra: "Base Ø 56,7 mm" },
+      {
+        label: "100 ml",
+        liters: 0.1,
+        height: 105,
+        width: 51.2,
+        weight: 130,
+        brimful: 109,
+        extra: "Base Ø 44 mm",
+      },
+      {
+        label: "250 ml",
+        liters: 0.25,
+        height: 135,
+        width: 68.3,
+        weight: 250,
+        brimful: 266,
+        extra: "Base Ø 43,3 mm",
+      },
+      {
+        label: "500 ml",
+        liters: 0.5,
+        height: 178,
+        width: 78,
+        weight: 350,
+        brimful: 515,
+        extra: "Base Ø 48,2 mm",
+      },
+      {
+        label: "750 ml",
+        liters: 0.75,
+        height: 202,
+        width: 89,
+        weight: 500,
+        brimful: 775,
+        extra: "Base Ø 58,2 mm",
+      },
+      {
+        label: "1 L",
+        liters: 1,
+        height: 241,
+        width: 91,
+        weight: 600,
+        brimful: 1030,
+        extra: "Base Ø 56,7 mm",
+      },
     ],
   },
   {

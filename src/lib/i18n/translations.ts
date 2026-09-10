@@ -49,6 +49,7 @@ const fr = {
     close: "Fermer le menu",
     tagline: "Djebel Bargou, Siliana — Tunisie",
     language: "Langue",
+    skip: "Aller au contenu",
   },
   hero: {
     label: "Tunisie · Djebel Bargou",
@@ -263,6 +264,7 @@ const en: Dict = {
     close: "Close menu",
     tagline: "Djebel Bargou, Siliana — Tunisia",
     language: "Language",
+    skip: "Skip to content",
   },
   hero: {
     label: "Tunisia · Djebel Bargou",
@@ -475,6 +477,7 @@ const ar: Dict = {
     close: "إغلاق القائمة",
     tagline: "جبل برقو، سليانة — تونس",
     language: "اللغة",
+    skip: "تخطَّ إلى المحتوى",
   },
   hero: {
     label: "تونس · جبل برقو",

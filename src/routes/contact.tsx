@@ -6,6 +6,7 @@ import { SectionLabel } from "../components/SectionLabel";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
 import { fill, useDocumentMeta, useI18n } from "../lib/i18n";
+import { SITE_URL } from "../lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -23,8 +24,10 @@ export const Route = createFileRoute("/contact")({
           "Écrivez-nous pour commander le millésime CARTHÉA ou pour une demande professionnelle.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE_URL}/contact` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/contact` }],
   }),
   component: Contact,
 });
@@ -38,12 +41,16 @@ function Contact() {
 
   const field =
     "w-full border-b border-white/12 bg-transparent py-3 text-sand placeholder:text-sand/30 transition-colors duration-500 focus:border-gold focus:outline-none";
+  const labelClass = "mb-2 block text-[10px] uppercase tracking-[0.25em] text-sand/45";
 
   return (
     <div className="min-h-screen bg-obsidian font-sans text-sand">
       <SiteNav variant="page" />
 
-      <main className="mx-auto grid max-w-[88rem] grid-cols-12 gap-y-16 px-6 pt-36 pb-24 lg:gap-x-16 lg:px-12 lg:pt-44 lg:pb-36">
+      <main
+        id="contenu"
+        className="mx-auto grid max-w-[88rem] grid-cols-12 gap-y-16 px-6 pt-36 pb-24 lg:gap-x-16 lg:px-12 lg:pt-44 lg:pb-36"
+      >
         <Reveal className="col-span-12 lg:col-span-5">
           <SectionLabel>{t.contact.label}</SectionLabel>
           <h1 className="mt-8 mb-8 font-serif text-[clamp(2.4rem,5.5vw,4rem)] font-medium italic leading-[1.08] text-balance">
@@ -80,7 +87,7 @@ function Contact() {
 
         <Reveal delay={120} className="col-span-12 lg:col-span-6 lg:col-start-7">
           {sent ? (
-            <div className="border border-white/10 p-10">
+            <div role="status" aria-live="polite" className="border border-white/10 p-10">
               <h2 className="mb-3 font-serif text-3xl text-gold">
                 {fill(t.contact.thanks, { name: form.name || t.contact.thanksFallback })}
               </h2>
@@ -97,29 +104,53 @@ function Contact() {
                 setSent(true);
               }}
             >
-              <input
-                required
-                className={field}
-                placeholder={t.contact.name}
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-              />
-              <input
-                required
-                type="email"
-                className={field}
-                placeholder={t.contact.email}
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-              />
-              <textarea
-                required
-                rows={5}
-                className={field + " resize-none"}
-                placeholder={t.contact.message}
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-              />
+              <div>
+                <label htmlFor="contact-nom" className={labelClass}>
+                  {t.contact.name}
+                </label>
+                <input
+                  required
+                  id="contact-nom"
+                  name="name"
+                  autoComplete="name"
+                  className={field}
+                  placeholder={t.contact.name}
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-email" className={labelClass}>
+                  {t.contact.email}
+                </label>
+                <input
+                  required
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  inputMode="email"
+                  autoComplete="email"
+                  className={field}
+                  placeholder={t.contact.email}
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-message" className={labelClass}>
+                  {t.contact.message}
+                </label>
+                <textarea
+                  required
+                  id="contact-message"
+                  name="message"
+                  rows={5}
+                  className={field + " resize-none"}
+                  placeholder={t.contact.message}
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                />
+              </div>
               <button
                 type="submit"
                 className="inline-flex items-center justify-center border border-gold/60 px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-gold transition-colors duration-500 hover:bg-gold hover:text-obsidian"

@@ -132,7 +132,7 @@ export function BottleShowcase({
   return (
     <div
       ref={hostRef}
-      className={`relative flex min-h-[26rem] items-end justify-center lg:min-h-[34rem] ${className}`}
+      className={`relative flex h-full w-full items-end justify-center ${className}`}
       style={
         {
           "--carthea-scale": 1 + zoom / 100,
@@ -155,9 +155,10 @@ export function BottleShowcase({
 
       <div
         ref={bottleRef}
-        className="relative w-[min(58vw,14.5rem)] origin-bottom lg:w-[min(22vw,16.75rem)]"
+        className="relative h-full origin-bottom"
         style={{
           aspectRatio: "410 / 1894",
+          maxWidth: "100%",
           opacity: revealed ? 1 : 0,
           animation: revealed
             ? `carthea-rise ${revealDuration}ms cubic-bezier(.22,.61,.36,1) both`
@@ -168,10 +169,9 @@ export function BottleShowcase({
             elle n'aurait pas de sens sur un fond sombre */}
         <span
           aria-hidden
-          className="pointer-events-none absolute -bottom-3 left-1/2 h-14 w-[190%] -translate-x-1/2"
+          className="pointer-events-none absolute -bottom-3 left-1/2 h-[8%] w-[170%] max-w-[100vw] -translate-x-1/2"
           style={{
-            background:
-              "radial-gradient(closest-side, rgba(0,0,0,0.78), rgba(0,0,0,0) 74%)",
+            background: "radial-gradient(closest-side, rgba(0,0,0,0.78), rgba(0,0,0,0) 74%)",
           }}
         />
 
@@ -188,7 +188,7 @@ export function BottleShowcase({
           <img
             src={src}
             srcSet={srcSmall ? `${srcSmall} 240w, ${src} 410w` : undefined}
-            sizes="(min-width: 1024px) 268px, 232px"
+            sizes="(min-width: 1024px) 112px, 80px"
             alt={alt}
             width={410}
             height={1894}

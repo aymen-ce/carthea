@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { OG_IMAGE, OG_IMAGE_ALT, SITE_URL } from "../lib/site";
 import { I18nProvider } from "../lib/i18n";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -96,8 +97,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "CARTHÉA" },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:locale", content: "fr_FR" },
+      // Sans og:image, tout partage (WhatsApp, LinkedIn, X…) s'affiche sans visuel.
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:alt", content: OG_IMAGE_ALT },
+      { property: "og:image:width", content: "1376" },
+      { property: "og:image:height", content: "768" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@carthéa" },
+      { name: "twitter:image", content: OG_IMAGE },
+      { name: "twitter:image:alt", content: OG_IMAGE_ALT },
     ],
     links: [
       {

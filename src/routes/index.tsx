@@ -12,6 +12,7 @@ import { SectionLabel } from "../components/SectionLabel";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
 import { useDocumentMeta, useI18n } from "../lib/i18n";
+import { SITE_URL } from "../lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,7 +21,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "CARTHÉA captures the soul of ancient Carthage. A singular monocultivar extra virgin olive oil, harvested from millennia-old Tunisian groves.",
+          "CARTHÉA capture l'âme de l'antique Carthage. Une huile d'olive vierge extra monovariétale, récoltée dans des vergers tunisiens millénaires.",
       },
       {
         property: "og:title",
@@ -29,11 +30,13 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "CARTHÉA captures the soul of ancient Carthage. A singular monocultivar extra virgin olive oil, harvested from millennia-old Tunisian groves.",
+          "CARTHÉA capture l'âme de l'antique Carthage. Une huile d'olive vierge extra monovariétale, récoltée dans des vergers tunisiens millénaires.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: SITE_URL }],
   }),
   component: Index,
 });
@@ -57,7 +60,7 @@ function Index() {
     <div className="min-h-screen bg-obsidian font-sans text-sand selection:bg-gold/30 selection:text-sand">
       <SiteNav />
 
-      <main>
+      <main id="contenu">
         {/* Hero */}
         <section className="relative overflow-hidden px-6 pt-32 pb-20 sm:pt-40 lg:px-12 lg:pt-44 lg:pb-32">
           <div className="mx-auto grid max-w-[88rem] grid-cols-12 items-center gap-y-14 lg:gap-x-16">
@@ -141,7 +144,7 @@ function Index() {
                     delay={i * 110}
                     className="flex flex-col border-b border-white/8 px-0 py-14 md:border-b-0 md:px-10 md:first:pl-0 md:last:pr-0 md:[&+article]:border-l md:[&+article]:border-white/8"
                   >
-                    <div className="flex h-[19rem] items-end justify-center sm:h-[22rem]">
+                    <div className="h-[20rem] sm:h-[24rem] lg:h-[28rem]">
                       <BottleShowcase
                         src={GAMME_IMAGES[key]}
                         alt={t.gamme.alt.replace("{name}", v.name)}

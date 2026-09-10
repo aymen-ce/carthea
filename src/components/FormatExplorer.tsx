@@ -70,10 +70,42 @@ const FORMATS: Format[] = [
     images: { classique: marascaClassique, premium: marascaPremium, bio: marascaBio },
     bodyShape: "section",
     capacities: [
-      { label: "250 ml", liters: 0.25, height: 211.5, width: 46.6, weight: 250, brimful: 265, extra: { kind: "square", a: 46.6, b: 46.6 } },
-      { label: "500 ml", liters: 0.5, height: 260, width: 57.5, weight: 390, brimful: 520, extra: { kind: "square", a: 57.5, b: 57.5 } },
-      { label: "750 ml", liters: 0.75, height: 274.7, width: 68, weight: 450, brimful: 775, extra: { kind: "square", a: 68, b: 68 } },
-      { label: "1 L", liters: 1, height: 300, width: 76.1, weight: 605, brimful: 1040, extra: { kind: "square", a: 76.1, b: 76.1 } },
+      {
+        label: "250 ml",
+        liters: 0.25,
+        height: 211.5,
+        width: 46.6,
+        weight: 250,
+        brimful: 265,
+        extra: { kind: "square", a: 46.6, b: 46.6 },
+      },
+      {
+        label: "500 ml",
+        liters: 0.5,
+        height: 260,
+        width: 57.5,
+        weight: 390,
+        brimful: 520,
+        extra: { kind: "square", a: 57.5, b: 57.5 },
+      },
+      {
+        label: "750 ml",
+        liters: 0.75,
+        height: 274.7,
+        width: 68,
+        weight: 450,
+        brimful: 775,
+        extra: { kind: "square", a: 68, b: 68 },
+      },
+      {
+        label: "1 L",
+        liters: 1,
+        height: 300,
+        width: 76.1,
+        weight: 605,
+        brimful: 1040,
+        extra: { kind: "square", a: 76.1, b: 76.1 },
+      },
     ],
   },
   {
@@ -81,11 +113,51 @@ const FORMATS: Format[] = [
     images: { classique: biolioClassique, premium: biolioPremium, bio: biolioBio },
     bodyShape: "round",
     capacities: [
-      { label: "100 ml", liters: 0.1, height: 105, width: 51.2, weight: 130, brimful: 109, extra: { kind: "base", a: 44 } },
-      { label: "250 ml", liters: 0.25, height: 135, width: 68.3, weight: 250, brimful: 266, extra: { kind: "base", a: 43.3 } },
-      { label: "500 ml", liters: 0.5, height: 178, width: 78, weight: 350, brimful: 515, extra: { kind: "base", a: 48.2 } },
-      { label: "750 ml", liters: 0.75, height: 202, width: 89, weight: 500, brimful: 775, extra: { kind: "base", a: 58.2 } },
-      { label: "1 L", liters: 1, height: 241, width: 91, weight: 600, brimful: 1030, extra: { kind: "base", a: 56.7 } },
+      {
+        label: "100 ml",
+        liters: 0.1,
+        height: 105,
+        width: 51.2,
+        weight: 130,
+        brimful: 109,
+        extra: { kind: "base", a: 44 },
+      },
+      {
+        label: "250 ml",
+        liters: 0.25,
+        height: 135,
+        width: 68.3,
+        weight: 250,
+        brimful: 266,
+        extra: { kind: "base", a: 43.3 },
+      },
+      {
+        label: "500 ml",
+        liters: 0.5,
+        height: 178,
+        width: 78,
+        weight: 350,
+        brimful: 515,
+        extra: { kind: "base", a: 48.2 },
+      },
+      {
+        label: "750 ml",
+        liters: 0.75,
+        height: 202,
+        width: 89,
+        weight: 500,
+        brimful: 775,
+        extra: { kind: "base", a: 58.2 },
+      },
+      {
+        label: "1 L",
+        liters: 1,
+        height: 241,
+        width: 91,
+        weight: 600,
+        brimful: 1030,
+        extra: { kind: "base", a: 56.7 },
+      },
     ],
   },
   {
@@ -94,9 +166,27 @@ const FORMATS: Format[] = [
     bodyShape: "section",
     capacities: [
       { label: "2 L", liters: 2, height: 205, width: 95, extra: { kind: "section", a: 95, b: 95 } },
-      { label: "3 L", liters: 3, height: 240, width: 108, extra: { kind: "section", a: 108, b: 108 } },
-      { label: "4 L", liters: 4, height: 290, width: 108, extra: { kind: "section", a: 108, b: 108 } },
-      { label: "5 L", liters: 5, height: 300, width: 120, extra: { kind: "section", a: 120, b: 120 } },
+      {
+        label: "3 L",
+        liters: 3,
+        height: 240,
+        width: 108,
+        extra: { kind: "section", a: 108, b: 108 },
+      },
+      {
+        label: "4 L",
+        liters: 4,
+        height: 290,
+        width: 108,
+        extra: { kind: "section", a: 108, b: 108 },
+      },
+      {
+        label: "5 L",
+        liters: 5,
+        height: 300,
+        width: 120,
+        extra: { kind: "section", a: 120, b: 120 },
+      },
     ],
   },
   {
@@ -111,16 +201,12 @@ const FORMATS: Format[] = [
 ];
 
 /** Dimensions maximales toutes gammes confondues, pour une échelle physique commune. */
-const MAX_HEIGHT = Math.max(
-  ...FORMATS.flatMap((f) => f.capacities.map((c) => c.height)),
-);
+const MAX_HEIGHT = Math.max(...FORMATS.flatMap((f) => f.capacities.map((c) => c.height)));
 
 function SpecRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-baseline gap-3 py-3">
-      <dt className="shrink-0 text-[10px] uppercase tracking-[0.22em] text-sand/45">
-        {label}
-      </dt>
+      <dt className="shrink-0 text-[10px] uppercase tracking-[0.22em] text-sand/45">{label}</dt>
       <span
         aria-hidden
         className="min-w-6 flex-1 translate-y-[-3px] border-b border-dotted border-white/12"
@@ -141,8 +227,7 @@ export function FormatExplorer() {
   const format = FORMATS.find((f) => f.id === formatId) ?? initialFormat;
   if (!format) return null;
   const capacity =
-    format.capacities[Math.min(capIndex, format.capacities.length - 1)] ??
-    format.capacities[0];
+    format.capacities[Math.min(capIndex, format.capacities.length - 1)] ?? format.capacities[0];
   if (!capacity) return null;
   const copy = ex.formats[format.id];
   const variantName = (id: VariantId) => t.gamme.items[id].name;
@@ -173,7 +258,7 @@ export function FormatExplorer() {
     <div className="flex flex-col gap-12">
       {/* Étape 1 — étiquette */}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-3">
-        <span className="mr-2 text-[10px] uppercase tracking-[0.3em] text-sand/35">
+        <span className="me-2 text-[10px] uppercase tracking-[0.3em] text-sand/35">
           01 — {ex.stepLabel}
         </span>
         {VARIANTS.map((v) => (
@@ -208,8 +293,8 @@ export function FormatExplorer() {
                       setFormatId(f.id);
                       setCapIndex(0);
                     }}
-                    className={`group w-full py-5 text-left transition-[padding,color] duration-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold ${
-                      active ? "pl-4" : "pl-0 hover:pl-3"
+                    className={`group w-full py-5 text-start transition-[padding,color] duration-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold ${
+                      active ? "ps-4" : "ps-0 hover:ps-3"
                     }`}
                   >
                     <span
@@ -220,7 +305,8 @@ export function FormatExplorer() {
                       {ex.formats[f.id].name}
                     </span>
                     <span className="mt-1 block text-[10px] uppercase tracking-[0.2em] text-sand/35">
-                      {ex.formats[f.id].material} · {fill(ex.capacityCount, { n: f.capacities.length })}
+                      {ex.formats[f.id].material} ·{" "}
+                      {fill(ex.capacityCount, { n: f.capacities.length })}
                     </span>
                   </button>
                 </li>
@@ -244,14 +330,17 @@ export function FormatExplorer() {
             {/* Repère de hauteur */}
             <span
               aria-hidden
-              className="absolute left-6 w-3 bg-gold/70 transition-all duration-700"
+              className="absolute start-6 w-3 bg-gold/70 transition-all duration-700"
               style={{ bottom: `${FLOOR}px`, height: `${productHeightPx}px`, width: "1px" }}
             />
             <span
-              className="absolute left-4 text-[9px] uppercase tracking-[0.2em] text-sand/35 transition-all duration-700"
+              className="absolute start-4 text-[9px] uppercase tracking-[0.2em] text-sand/35 transition-all duration-700"
               style={{ bottom: `${FLOOR + productHeightPx + 6}px` }}
             >
-              {fmt(capacity.height)} {ex.mm}
+              <span dir="ltr" className="latin">
+                {fmt(capacity.height)}
+              </span>{" "}
+              {ex.mm}
             </span>
 
             <div
@@ -261,7 +350,11 @@ export function FormatExplorer() {
               <img
                 key={`${format.id}-${variant}`}
                 src={format.images[variant]}
-                alt={fill(ex.alt, { format: copy.name, capacity: capacity.label, label: variantName(variant) })}
+                alt={fill(ex.alt, {
+                  format: copy.name,
+                  capacity: capacity.label,
+                  label: variantName(variant),
+                })}
                 loading="lazy"
                 decoding="async"
                 style={{
@@ -273,7 +366,10 @@ export function FormatExplorer() {
               />
             </div>
 
-            <span className="absolute inset-x-0 bottom-5 text-center font-serif text-2xl tracking-wide text-gold/90">
+            <span
+              dir="ltr"
+              className="latin absolute inset-x-0 bottom-5 text-center font-serif text-2xl tracking-wide text-gold/90"
+            >
               {capacity.label}
             </span>
           </div>
@@ -282,9 +378,7 @@ export function FormatExplorer() {
         {/* Étapes 3 & 4 — contenance et dimensions */}
         <div className="min-w-0 lg:col-span-4">
           <h3 className="font-serif text-3xl text-sand sm:text-4xl">{copy.name}</h3>
-          <p className="mt-4 max-w-[44ch] text-sm leading-relaxed text-sand/55">
-            {copy.desc}
-          </p>
+          <p className="mt-4 max-w-[44ch] text-sm leading-relaxed text-sand/55">{copy.desc}</p>
 
           <span className="mt-10 mb-4 block text-[10px] uppercase tracking-[0.3em] text-sand/35">
             03 — {ex.stepCapacity}
@@ -296,7 +390,8 @@ export function FormatExplorer() {
                 type="button"
                 aria-pressed={c.label === capacity.label}
                 onClick={() => setCapIndex(i)}
-                className={chip(c.label === capacity.label)}
+                dir="ltr"
+                className={`${chip(c.label === capacity.label)} latin`}
               >
                 {c.label}
               </button>
