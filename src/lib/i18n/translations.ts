@@ -115,6 +115,9 @@ const fr = {
     stepFormat: "Format",
     stepCapacity: "Contenance",
     stepDimensions: "Dimensions",
+    tracedPlan: "Silhouette tracée d'après le plan {ref}.",
+    tracedDerived:
+      "Silhouette tracée d'après les cotes du catalogue ; la longueur du col et l'épaule sont approchées.",
     capacityCount: "{n} contenances",
     bodyRound: "Corps",
     bodySection: "Section",
@@ -324,6 +327,9 @@ const en: Dict = {
     stepFormat: "Format",
     stepCapacity: "Capacity",
     stepDimensions: "Dimensions",
+    tracedPlan: "Outline drawn from drawing {ref}.",
+    tracedDerived:
+      "Outline drawn from the catalogue dimensions; neck length and shoulder are approximated.",
     capacityCount: "{n} sizes",
     bodyRound: "Body",
     bodySection: "Section",
@@ -531,6 +537,8 @@ const ar: Dict = {
     stepFormat: "العبوة",
     stepCapacity: "السعة",
     stepDimensions: "الأبعاد",
+    tracedPlan: "الشكل مرسوم وفق المخطط {ref}.",
+    tracedDerived: "الشكل مرسوم وفق أبعاد الكتالوج؛ طول العنق والكتف تقريبيان.",
     capacityCount: "{n} سعات",
     bodyRound: "القطر",
     bodySection: "المقطع",

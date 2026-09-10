@@ -1,23 +1,22 @@
 import { useState } from "react";
 
 import { fill, useI18n } from "../lib/i18n";
-import { packBox } from "../lib/pack-metrics";
-import doricaClassique from "../assets/pack-dorica-classique.png";
-import doricaPremium from "../assets/pack-dorica-premium.png";
-import marascaClassique from "../assets/pack-marasca-classique.png";
-import marascaPremium from "../assets/pack-marasca-premium.png";
-import biolioClassique from "../assets/pack-biolio-classique.png";
-import biolioPremium from "../assets/pack-biolio-premium.png";
-import bidonClassique from "../assets/pack-bidon-classique.png";
-import bidonPremium from "../assets/pack-bidon-premium.png";
-import petClassique from "../assets/pack-pet-classique.png";
-import petPremium from "../assets/pack-pet-premium.png";
+import { bottleProfile, shapeFamily } from "../lib/bottle-profile";
+import { BottleSilhouette } from "./BottleSilhouette";
 
 type VariantId = "classique" | "premium";
 
-const VARIANTS: { id: VariantId; swatch: string }[] = [
-  { id: "classique", swatch: "bg-obsidian ring-gold/70" },
-  { id: "premium", swatch: "bg-[oklch(0.28_0.06_140)] ring-gold/70" },
+const VARIANTS: { id: VariantId; swatch: string; label: { fill: string; stroke: string } }[] = [
+  {
+    id: "classique",
+    swatch: "bg-obsidian ring-gold/70",
+    label: { fill: "oklch(0.16 0.005 100)", stroke: "rgba(217,177,102,0.55)" },
+  },
+  {
+    id: "premium",
+    swatch: "bg-[oklch(0.28_0.06_140)] ring-gold/70",
+    label: { fill: "oklch(0.30 0.05 145)", stroke: "rgba(217,177,102,0.55)" },
+  },
 ];
 
 /** Détail complémentaire structuré (les cotes restent des nombres, jamais traduits). */
@@ -42,7 +41,6 @@ type FormatId = "dorica" | "marasca" | "biolio" | "bidon" | "pet";
 
 type Format = {
   id: FormatId;
-  images: Record<VariantId, string>;
   /** Le corps est-il rond (Ø) ou de section carrée ? */
   bodyShape: "round" | "section";
   capacities: Capacity[];
@@ -51,7 +49,6 @@ type Format = {
 const FORMATS: Format[] = [
   {
     id: "dorica",
-    images: { classique: doricaClassique, premium: doricaPremium },
     bodyShape: "round",
     capacities: [
       { label: "250 ml", liters: 0.25, height: 205, width: 56.6, weight: 250 },
@@ -61,7 +58,6 @@ const FORMATS: Format[] = [
   },
   {
     id: "marasca",
-    images: { classique: marascaClassique, premium: marascaPremium },
     bodyShape: "section",
     capacities: [
       {
@@ -104,7 +100,6 @@ const FORMATS: Format[] = [
   },
   {
     id: "biolio",
-    images: { classique: biolioClassique, premium: biolioPremium },
     bodyShape: "round",
     capacities: [
       {
@@ -156,7 +151,6 @@ const FORMATS: Format[] = [
   },
   {
     id: "bidon",
-    images: { classique: bidonClassique, premium: bidonPremium },
     bodyShape: "section",
     capacities: [
       { label: "2 L", liters: 2, height: 205, width: 95, extra: { kind: "section", a: 95, b: 95 } },
@@ -185,7 +179,6 @@ const FORMATS: Format[] = [
   },
   {
     id: "pet",
-    images: { classique: petClassique, premium: petPremium },
     bodyShape: "round",
     capacities: [
       { label: "3 L", liters: 3, height: 290, width: 110, extra: { kind: "body", a: 110, b: 110 } },
@@ -227,13 +220,16 @@ export function FormatExplorer() {
   const variantName = (id: VariantId) => t.gamme.items[id].name;
   const extraText = (e: Extra) => fill(ex.extras[e.kind], { a: fmt(e.a), b: fmt(e.b ?? e.a) });
 
-  // Échelle physique commune : seule la HAUTEUR pilote la taille affichée.
-  // La largeur suit le ratio intrinsèque du PNG — aucun étirement possible.
+  // Échelle physique commune à tous les formats : un millimètre vaut le même
+  // nombre de pixels partout, donc les hauteurs sont directement comparables.
   const STAGE_HEIGHT = 420;
   const FLOOR = 64;
   const usable = STAGE_HEIGHT - FLOOR - 24;
-  const productHeightPx = (capacity.height / MAX_HEIGHT) * usable;
-  const box = packBox(format.id, variant, productHeightPx);
+  const pxPerMm = usable / MAX_HEIGHT;
+  const productHeightPx = capacity.height * pxPerMm;
+  const profile = bottleProfile(format.id, capacity.label, capacity.height, capacity.width);
+  const family = shapeFamily(format.id);
+  const labelTint = VARIANTS.find((v) => v.id === variant)?.label ?? VARIANTS[0]!.label;
 
   const bodyLabel = format.bodyShape === "round" ? ex.bodyRound : ex.bodySection;
   const bodyValue =
@@ -341,23 +337,20 @@ export function FormatExplorer() {
               className="absolute inset-x-0 flex items-end justify-center"
               style={{ bottom: `${FLOOR}px` }}
             >
-              <img
-                key={`${format.id}-${variant}`}
-                src={format.images[variant]}
-                alt={fill(ex.alt, {
-                  format: copy.name,
-                  capacity: capacity.label,
-                  label: variantName(variant),
-                })}
-                loading="lazy"
-                decoding="async"
-                style={{
-                  height: `${box.imgHeight}px`,
-                  width: `${box.imgWidth}px`,
-                  marginBottom: `${-box.bottomOffset}px`,
-                }}
-                className="pack-fade max-w-full object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.55)] transition-[height,width] duration-700 ease-out"
-              />
+              <div key={`${format.id}-${variant}-${capacity.label}`} className="pack-fade">
+                <BottleSilhouette
+                  profile={profile}
+                  family={family}
+                  scale={pxPerMm}
+                  labelFill={labelTint.fill}
+                  labelStroke={labelTint.stroke}
+                  title={fill(ex.alt, {
+                    format: copy.name,
+                    capacity: capacity.label,
+                    label: variantName(variant),
+                  })}
+                />
+              </div>
             </div>
 
             <span
@@ -409,6 +402,11 @@ export function FormatExplorer() {
           <div className="mt-6 space-y-2 text-xs leading-relaxed text-sand/45">
             <p>{copy.neck}</p>
             {capacity.extra ? <p>{extraText(capacity.extra)}</p> : null}
+            <p>
+              {profile.source === "plan" && profile.planRef
+                ? fill(ex.tracedPlan, { ref: profile.planRef })
+                : ex.tracedDerived}
+            </p>
             <p className="pt-3 text-[10px] uppercase tracking-[0.18em] text-sand/30">
               {copy.use} — {copy.source}
             </p>
