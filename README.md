@@ -24,3 +24,21 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Contrôler un visuel produit
+
+Les silhouettes du comparateur sont tracées depuis les cotes du catalogue, mais
+les photos, elles, doivent respecter ces mêmes cotes. Un visuel généré peut être
+soigné et faux : c'est ainsi qu'un bidon PET a été affiché à 279 mm de large
+pour 110 mm réels, la marge transparente latérale ayant été comptée comme du
+produit.
+
+Avant d'ajouter un visuel dans `src/assets`, mesurez-le :
+
+```sh
+bun scripts/verifie-visuel.ts src/assets/pack-marasca-classique.png marasca
+bun scripts/verifie-visuel.ts nouveau-visuel.png pet "5 L"
+```
+
+Le script relève la boîte englobante du canal alpha sur les deux axes, la
+compare aux cotes du catalogue et sort en code 1 si l'écart dépasse 3 %.

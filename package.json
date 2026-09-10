@@ -9,6 +9,7 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
+    "verifie-visuel": "bun scripts/verifie-visuel.ts",
     "format": "prettier --write ."
   },
   "overrides": {
